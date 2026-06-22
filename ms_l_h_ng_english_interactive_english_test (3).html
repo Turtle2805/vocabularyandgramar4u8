@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ôn Tập Tiếng Anh Siêu Cấp - Ms Lê Hằng English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --bg-teal: #00B4A2;
+            --dark-teal: #00796B;
+            --emerald: #00A699;
+            --glass-white: rgba(255, 255, 255, 0.2);
+            --correct: #00D26A;
+            --wrong: #FF4757;
+            --accent-yellow: #FDCB6E;
+            --accent-orange: #FF8F00;
+            --ipa-bg: #F3E5F5;
+            --ipa-text: #7B1FA2;
+            --eng-blue: #1976D2;
+            --vn-red: #D84315;
+            --primary: #8854C0;
+        }
+
+        body {
+            font-family: 'Quicksand', 'Nunito', sans-serif;
+            background: linear-gradient(-45deg, #00A699, #00B4A2, #8854C0, #FDCB6E);
+            background-size: 400% 400%;
+            animation: gradientMove 12s ease infinite;
+            min-height: 100vh;
+            color: #2D3748;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .decor-pattern {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.12;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M15 15 L20 25 L10 25 Z M50 60 C55 50, 65 50, 70 60 Z M65 20 A8 8 0 1 1 65 20.1 Z'/%3E%3C/g%3E%3C/svg%3E");
+            animation: backgroundFloat 30s linear infinite;
+        }
+
+        @keyframes backgroundFloat {
+            0% { background-position: 0 0; }
+            100% { background-position: 500px 1000px; }
+        }
+
+        /* Gamified 3D Interactive Buttons */
+        .btn-3d {
+            transition: all 0.12s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 0px rgba(0,0,0,0.15);
+        }
+        .btn-3d:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0px rgba(0,0,0,0.15);
+        }
+
+        .btn-answer {
+            background-color: #E0F2F1;
+            color: #1A365D;
+            transition: all 0.1s ease;
+            box-shadow: 0 6px 0px #B2DFDB;
+        }
+        .btn-answer:hover:not(.disabled) {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 0px #B2DFDB;
+            background-color: #F4FBFB;
+        }
+        .btn-answer:active:not(.disabled) {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0px #B2DFDB;
+        }
+        .btn-answer.correct {
+            background-color: var(--correct) !important;
+            color: white !important;
+            box-shadow: 0 6px 0px #009624 !important;
+        }
+        .btn-answer.wrong {
+            background-color: var(--wrong) !important;
+            color: white !important;
+            box-shadow: 0 6px 0px #C2185B !important;
+        }
+
+        /* Glassmorphism elements styling */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 32px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #FFFDE7, #FFF9C4);
+            border: 3px solid #FBC02D;
+            border-radius: 24px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+        }
+
+        .shake {
+            animation: shake 0.4s ease-in-out;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+
+        .tab-btn {
+            background-color: rgba(255, 255, 255, 0.4);
+            color: #1A3038;
+            transition: all 0.2s;
+        }
+        .tab-btn:hover {
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+        .tab-btn.active {
+            background-color: var(--dark-teal) !important;
+            color: white !important;
+            box-shadow: 0 4px 0 #004D40 !important;
+            transform: translateY(2px);
+        }
+
+        /* Master Explanation Section Design */
+        .explanation-box {
+            background: #FFFFFF;
+            border-left: 10px solid var(--accent-orange);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            overflow: hidden;
+            animation: slideDown 0.35s ease-out;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .banner-instruction {
+            background-color: #FFF9C4;
+            border: 2px dashed var(--accent-orange);
+            border-radius: 12px;
+            color: #E65100;
+        }
+
+        .exp-word {
+            color: var(--eng-blue);
+            font-weight: 800;
+        }
+        .exp-ipa {
+            background-color: var(--ipa-bg);
+            color: var(--ipa-text);
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+        }
+        .exp-meaning {
+            color: var(--vn-red);
+            font-weight: 700;
+        }
+
+        /* Canvas particles layer */
+        #confetti-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Interactive Phone simulation & Sign layouts for Q29/Q30 */
+        .sale-sign {
+            background: linear-gradient(135deg, #FF4757, #EE5253);
+            border: 4px solid #FFF;
+            box-shadow: 0 8px 0 #D63031, 0 12px 20px rgba(0,0,0,0.15);
+            transform: rotate(-3deg);
+        }
+        .phone-chat {
+            background: #FFF;
+            border: 8px solid #2C3E50;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="pb-24">
+
+    <div class="decor-pattern"></div>
+    <canvas id="confetti-canvas"></canvas>
+
+    <div class="container mx-auto px-4 max-w-4xl pt-6">
+        <!-- Small Elegant Title & Header -->
+        <header class="text-center mb-6">
+            <div class="inline-flex items-center gap-2 bg-emerald-800/40 text-white py-1 px-4 rounded-full text-xs font-black mb-2 shadow-sm border border-white/20">
+                <i class="fa-solid fa-chalkboard-user text-yellow-300"></i> Giáo viên tạo: Ms Lê Hằng English
+            </div>
+            <h1 class="text-2xl md:text-3.5xl font-black text-white drop-shadow-[0_3px_0_rgba(0,0,0,0.15)] tracking-wide">
+                🌟 Ôn Tập Tiếng Anh Siêu Cấp 🌟
+            </h1>
+        </header>
+
+        <!-- Golden warning message widget -->
+        <div class="warning-box p-5 md:p-6 mb-8 text-center">
+            <h3 class="text-lg font-black text-amber-800 flex justify-center items-center gap-2 mb-2">
+                <i class="fa-solid fa-triangle-exclamation text-xl text-red-500 animate-bounce"></i> 
+                LỜI NHẮC CỰC KỲ QUAN TRỌNG
+                <i class="fa-solid fa-triangle-exclamation text-xl text-red-500 animate-bounce"></i>
+            </h3>
+            <p class="text-amber-900 font-bold text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
+                Chỉ có <span class="text-red-500 underline decoration-2">đọc kỹ giải thích ngay sau mỗi câu</span>, sau đó ghi lại từ vựng/cấu trúc mới vào vở để học thì mới thực sự giỏi lên.
+            </p>
+            <p class="text-amber-800 font-bold text-xs md:text-sm mt-2">
+                Làm cho xong mà không đọc giải thích hay đọc qua loa không ghi chép thì chỉ tốn thời gian vô ích!
+            </p>
+            <div class="mt-3 text-purple-700 font-black tracking-widest text-xs animate-pulse">
+                * Kéo tới đâu, làm tới đó! *
+            </div>
+        </div>
+
+        <!-- Tab Navigation to divide the gigantic test smoothly -->
+        <div class="mb-8">
+            <p class="text-white font-black text-center mb-3 drop-shadow text-xs tracking-wider uppercase">
+                <i class="fa-solid fa-folder-open"></i> Chọn phần ôn tập bài học dưới đây:
+            </p>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 bg-black/25 p-2 rounded-3xl backdrop-blur-md" id="tabs-container">
+                <!-- Javascript will render tabs dynamically -->
+            </div>
+        </div>
+
+        <!-- Main Card Workspace -->
+        <main class="glass-card p-6 md:p-8 relative min-h-[400px]">
+            <div id="exercise-workspace" class="transition-all duration-300">
+                <!-- Current selected exercise questions will render here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Dropdown Modal Overlay for Gap Fill & Custom Matching activities -->
+    <div id="dropdown-overlay" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+        <div class="bg-white rounded-3xl p-6 w-full max-w-md border-4 border-emerald-500 shadow-2xl transform scale-95 transition-transform duration-200" id="popup-box">
+            <h4 class="text-emerald-700 font-black text-lg text-center mb-4 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-circle-question text-yellow-400"></i> Lựa chọn đáp án chính xác:
+            </h4>
+            <div class="space-y-2" id="popup-choices-anchor">
+                <!-- Options injected here -->
+            </div>
+            <button class="w-full mt-4 bg-gray-200 text-gray-700 font-bold py-2.5 rounded-xl border-b-4 border-gray-400 active:border-b-0 active:translate-y-1 transition-all text-sm" onclick="closeDropdown()">
+                Đóng lại
+            </button>
+        </div>
+    </div>
+
+    <!-- Fixed Scoreboard and Submission Bar -->
+    <footer class="fixed bottom-0 left-0 w-full bg-white/90 border-t-4 border-emerald-600 px-4 py-3 shadow-[0_-8px_30px_rgba(0,0,0,0.15)] flex items-center justify-between gap-4 z-40 backdrop-blur-md">
+        <div class="flex items-center gap-3">
+            <div class="bg-yellow-100 text-amber-800 py-1.5 px-4 rounded-2xl flex items-center gap-2 font-black text-xs md:text-sm border border-yellow-300 shadow-sm">
+                <i class="fa-solid fa-star text-yellow-400 animate-spin-slow"></i>
+                <span>Điểm của con: <span id="footer-score-text" class="text-emerald-600 text-lg">0</span></span>
+            </div>
+            <!-- Interactive Progress Bar -->
+            <div class="hidden sm:block w-40 md:w-64 bg-gray-200 h-4 rounded-full overflow-hidden shadow-inner border border-gray-300">
+                <div class="bg-gradient-to-r from-emerald-400 to-green-400 h-full w-0 transition-all duration-300 rounded-full" id="footer-progress-bar"></div>
+            </div>
+        </div>
+        <button onclick="submitFinal()" class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-black px-6 py-2.5 rounded-2xl shadow-[0_5px_0px_#059669] hover:brightness-110 active:translate-y-1 active:shadow-none transition-all flex items-center gap-2 text-xs md:text-sm">
+            <i class="fa-solid fa-square-check"></i> TỔNG KẾT KẾT QUẢ
+        </button>
+    </footer>
+
+    <!-- Comprehensive Score Evaluation Modal -->
+    <div id="result-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+        <div class="bg-white rounded-[32px] p-6 md:p-8 w-full max-w-lg border-4 border-emerald-400 shadow-2xl text-center">
+            <div class="text-5xl mb-3">👩‍🏫</div>
+            <h3 class="text-xl md:text-2xl font-black text-teal-700 mb-2">Ms Lê Hằng English Đánh Giá</h3>
+            <div class="bg-teal-50 p-4 rounded-2xl border-2 border-dashed border-teal-200 mb-4">
+                <p class="text-gray-500 font-bold text-sm">Điểm số đạt được:</p>
+                <p class="text-4xl font-extrabold text-emerald-500 animate-bounce" id="modal-score-percent">0%</p>
+                <p class="text-xs text-teal-600 mt-1 font-bold" id="modal-score-fraction">(0/0 câu đúng)</p>
+            </div>
+            <p class="text-gray-700 font-bold text-sm md:text-base mb-6 leading-relaxed max-h-48 overflow-y-auto text-left" id="modal-comment"></p>
+            <div class="flex gap-3">
+                <button onclick="restartTest()" class="flex-1 bg-yellow-400 text-amber-950 border-b-4 border-yellow-600 font-black py-3 rounded-2xl active:translate-y-1 active:border-b-0 transition-all text-sm">
+                    Làm lại bài <i class="fa-solid fa-rotate"></i>
+                </button>
+                <button onclick="closeResultModal()" class="flex-1 bg-gray-200 text-gray-700 border-b-4 border-gray-400 font-black py-3 rounded-2xl active:translate-y-1 active:border-b-0 transition-all text-sm">
+                    Xem lại đáp án
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // WEB AUDIO API SOUND GENERATOR
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        let audioCtx = null;
+
+        function playSound(type) {
+            try {
+                if (!audioCtx) audioCtx = new AudioContextClass();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if (type === 'correct') {
+                    // Chime ding ding
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+                    gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.25);
+
+                    setTimeout(() => {
+                        const osc2 = audioCtx.createOscillator();
+                        const gain2 = audioCtx.createGain();
+                        osc2.connect(gain2);
+                        gain2.connect(audioCtx.destination);
+                        osc2.type = 'sine';
+                        osc2.frequency.setValueAtTime(659.25, audioCtx.currentTime); // E5
+                        gain2.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                        gain2.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
+                        osc2.start();
+                        osc2.stop(audioCtx.currentTime + 0.25);
+                    }, 100);
+                } else if (type === 'wrong') {
+                    // Téo tèo tèo / Buzz
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(140, audioCtx.currentTime);
+                    osc.frequency.linearRampToValueAtTime(85, audioCtx.currentTime + 0.35);
+                    gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.35);
+                }
+            } catch (err) {
+                console.log("Audio API issue: ", err);
+            }
+        }
+
+        // CONFETTI RAIN ANIMATION ENGINE
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        let confettis = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function spawnConfetti() {
+            confettis = [];
+            for (let i = 0; i < 60; i++) {
+                confettis.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    size: Math.random() * 8 + 5,
+                    color: ['#00C9A7', '#8854C0', '#FDCB6E', '#00D26A', '#FF4757'][Math.floor(Math.random() * 5)],
+                    speedY: Math.random() * 4 + 3,
+                    speedX: Math.random() * 4 - 2,
+                    rotation: Math.random() * 360,
+                    rotationSpeed: Math.random() * 5 - 2.5
+                });
+            }
+            animateConfetti();
+        }
+
+        function animateConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            let alive = false;
+            confettis.forEach(c => {
+                c.y += c.speedY;
+                c.x += c.speedX;
+                c.rotation += c.rotationSpeed;
+                if (c.y < canvas.height) {
+                    alive = true;
+                    ctx.save();
+                    ctx.translate(c.x, c.y);
+                    ctx.rotate(c.rotation * Math.PI / 180);
+                    ctx.fillStyle = c.color;
+                    ctx.fillRect(-c.size / 2, -c.size / 2, c.size, c.size);
+                    ctx.restore();
+                }
+            });
+            if (alive) requestAnimationFrame(animateConfetti);
+        }
+
+        // SHUFFLE HELPER (Fisher-Yates)
+        function shuffleArray(array) {
+            let shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // MASTER DATABASE - 100% COMPLETE NO SUB-CUTS
+        const database = {
+            "ex1_p1": {
+                title: "Exercise 1: Vocabulary & Grammar (Q1-20)",
+                desc: "Chọn đáp án đúng nhất để hoàn thiện câu hỏi văn cảnh và kiến thức dân tộc học.",
+                questions: [
+                    {
+                        id: "ex1_q1",
+                        q: "Bamboo dancing is a popular _______ of the Thai people.",
+                        options: ["communal house", "folk dance", "costume", "musical instrument"],
+                        answer: "folk dance",
+                        type: "mcq",
+                        exp: "1. Phân tích 4 đáp án:<br>• <span class='exp-word'>communal house</span> <span class='exp-ipa'>[ /kəˈmjuːnl haʊs/ ]</span>: nhà rông / nhà cộng đồng.<br>• <span class='exp-word'>folk dance</span> <span class='exp-ipa'>[ /fəʊk dɑːns/ ]</span>: điệu múa dân gian.<br>• <span class='exp-word'>costume</span> <span class='exp-ipa'>[ /ˈkɒstjuːm/ ]</span>: trang phục truyền thống.<br>• <span class='exp-word'>musical instrument</span> <span class='exp-ipa'>[ /ˈmjuːzɪkl ˈɪnstrəmənt/ ]</span>: nhạc cụ.<br>2. Dịch nghĩa toàn câu: 'Múa sạp (múa tre) là một điệu múa dân gian phổ biến của người dân tộc Thái.'<br>3. Tại sao chọn B? Vì 'bamboo dancing' (múa sạp) thuộc loại hình múa dân gian ('folk dance')."
+                    },
+                    {
+                        id: "ex1_q2",
+                        q: "The dan tinh is a _______ of Tay ethnic group.",
+                        options: ["musical instrument", "five-colour sticky rice", "folk dance", "traditional costume"],
+                        answer: "musical instrument",
+                        type: "mcq",
+                        exp: "1. Phân tích 4 đáp án:<br>• <span class='exp-word'>musical instrument</span>: nhạc cụ âm nhạc.<br>• <span class='exp-word'>five-colour sticky rice</span>: xôi ngũ sắc.<br>• <span class='exp-word'>folk dance</span>: múa dân gian.<br>• <span class='exp-word'>traditional costume</span>: trang phục truyền thống.<br>2. Dịch nghĩa toàn câu: 'Đàn tính là một nhạc cụ truyền thống của nhóm đồng bào dân tộc Tày.'<br>3. Tại sao chọn A? Đàn Tính (dan tinh) là loại nhạc cụ dây khảy truyền thống có bầu gảy làm từ quả bầu khô khô cứng."
+                    },
+                    {
+                        id: "ex1_q3",
+                        q: "We live in a stilt house that is built on _______.",
+                        options: ["high posts", "highland", "terraced field", "communal house"],
+                        answer: "high posts",
+                        type: "mcq",
+                        exp: "1. Phân tích 4 đáp án:<br>• <span class='exp-word'>high posts</span> <span class='exp-ipa'>[ /haɪ pəʊsts/ ]</span>: các cây cột cao vững chãi.<br>• <span class='exp-word'>highland</span> <span class='exp-ipa'>[ /ˈhaɪlənd/ ]</span>: vùng cao nguyên.<br>• <span class='exp-word'>terraced field</span> <span class='exp-ipa'>[ /ˈterəst fiːld/ ]</span>: ruộng bậc thang.<br>• <span class='exp-word'>communal house</span>: nhà rông.<br>2. Dịch nghĩa toàn câu: 'Chúng tôi sống trong một ngôi nhà sàn được xây dựng dựng kiên cố trên các cột gỗ cao.'<br>3. Tại sao chọn A? Nhà sàn ('stilt house') theo đặc tính kiến trúc luôn được nâng đỡ trên các hệ cột gỗ cao ('high posts') tránh thú dữ và ẩm thấp."
+                    },
+                    {
+                        id: "ex1_q4",
+                        q: "The largest and tallest house in a village of ethnic minority group is the _______.",
+                        options: ["stilt house", "communal house", "bamboo house", "wooden statue"],
+                        answer: "communal house",
+                        type: "mcq",
+                        exp: "1. Phân tích 4 đáp án:<br>• <span class='exp-word'>stilt house</span>: nhà sàn.<br>• <span class='exp-word'>communal house</span>: nhà rông cộng đồng.<br>• <span class='exp-word'>bamboo house</span>: nhà tre.<br>• <span class='exp-word'>wooden statue</span> <span class='exp-ipa'>[ /ˈwʊdn ˈstætʃuː/ ]</span>: tượng gỗ.<br>2. Dịch nghĩa toàn câu: 'Ngôi nhà to lớn nhất và cao ráo nhất trong bản làng của đồng bào dân tộc thiểu số là ngôi nhà chung (nhà rông).'<br>3. Tại sao chọn B? Nhà rông ('communal house') là trái tim văn hóa cộng đồng, luôn có kích thước đồ sộ nhất làng."
+                    },
+                    {
+                        id: "ex1_q5",
+                        q: "Ethnic people have to climb a _______ to enter their house.",
+                        options: ["bamboo", "staircase", "post", "terraced field"],
+                        answer: "staircase",
+                        type: "mcq",
+                        exp: "1. Phân tích 4 đáp án:<br>• <span class='exp-word'>staircase</span> <span class='exp-ipa'>[ /ˈsteəkeɪs/ ]</span>: cầu thang gỗ.<br>• <span class='exp-word'>bamboo</span>: tre.<br>• <span class='exp-word'>post</span>: cột trụ cột gỗ.<br>2. Dịch nghĩa toàn câu: 'Đồng bào dân tộc thiểu số phải leo lên một cầu thang gỗ để đi vào trong ngôi nhà sàn của mình.'<br>3. Tại sao chọn B? Để lên sàn nhà cao của nhà sàn, người ta cần di chuyển qua bậc thang cầu thang ('staircase')."
+                    },
+                    {
+                        id: "ex1_q6",
+                        q: "The Kinh use _______ to make banh chung and banh tet.",
+                        options: ["sticky rice", "wooden statue", "bamboo", "livestock"],
+                        answer: "sticky rice",
+                        type: "mcq",
+                        exp: "1. Phân tích 4 đáp án:<br>• <span class='exp-word'>sticky rice</span> <span class='exp-ipa'>[ /ˈstɪki raɪs/ ]</span>: gạo nếp dẻo thơm.<br>• <span class='exp-word'>wooden statue</span>: tượng gỗ.<br>• <span class='exp-word'>bamboo</span>: tre.<br>• <span class='exp-word'>livestock</span> <span class='exp-ipa'>[ /ˈlaɪvstɒk/ ]</span>: gia súc gia cầm chăn nuôi.<br>2. Dịch nghĩa toàn câu: 'Người Kinh sử dụng gạo nếp dẻo thơm để làm bánh chưng và gói bánh tét ngày Tết.'<br>3. Tại sao chọn A? Bánh chưng và bánh tét bắt buộc được làm từ nguyên liệu cốt lõi là gạo nếp dẻo thơm dẻo bùi ('sticky rice')."
+                    },
+                    {
+                        id: "ex1_q7",
+                        q: "My Son sanctuary has been recognized by UNESCO as a world _______.",
+                        options: ["ethnic minorities", "open-air market", "heritage site", "terraced field"],
+                        answer: "heritage site",
+                        type: "mcq",
+                        exp: "1. Phân tích 4 đáp án:<br>• <span class='exp-word'>heritage site</span> <span class='exp-ipa'>[ /ˈherɪtɪdʒ saɪt/ ]</span>: di sản thế giới văn hóa công nhận.<br>• <span class='exp-word'>ethnic minorities</span>: dân tộc thiểu số.<br>• <span class='exp-word'>open-air market</span>: chợ ngoài trời.<br>2. Dịch nghĩa toàn câu: 'Thánh địa Mỹ Sơn đã được tổ chức UNESCO chính thức công nhận công trạng là một di sản thế giới.'<br>3. Tại sao chọn C? Đi kèm với danh xưng di sản văn hóa thế giới UNESCO là cụm từ danh từ chuẩn 'world heritage site'."
+                    },
+                    {
+                        id: "ex1_q8",
+                        q: "If you go to Sapa, you can distinguish people from different ethnic groups by their _______.",
+                        options: ["costumes", "livestock", "highlands", "staircases"],
+                        answer: "costumes",
+                        type: "mcq",
+                        exp: "1. Phân tích 4 đáp án:<br>• <span class='exp-word'>costumes</span> <span class='exp-ipa'>[ /ˈkɒstjuːmz/ ]</span>: y phục quần áo trang phục dân tộc.<br>• <span class='exp-word'>livestock</span>: gia súc chăn thả.<br>• <span class='exp-word'>highlands</span>: vùng núi cao.<br>2. Dịch nghĩa toàn câu: 'Nếu con có dịp ghé thăm Sa Pa, con dễ dàng phân biệt được người dân giữa các dân tộc anh em khác nhau nhờ vào trang phục y phục độc đáo của họ.'<br>3. Tại sao chọn A? Mỗi dân tộc có một bản sắc thêu thùa và hoa văn đặc thù riêng trên trang phục y phục dệt tay ('costumes')."
+                    },
+                    {
+                        id: "ex1_q9",
+                        q: "Xoe and Sap are _______ of Thai ethnic minority people.",
+                        options: ["modern dances", "jazz dances", "lion dances", "folk dances"],
+                        answer: "folk dances",
+                        type: "mcq",
+                        exp: "1. Phân tích 4 đáp án:<br>• <span class='exp-word'>folk dances</span>: các điệu múa dân gian cổ truyền.<br>• <span class='exp-word'>modern dances</span>: múa nhảy hiện đại.<br>• <span class='exp-word'>lion dances</span>: múa lân sư rồng.<br>2. Dịch nghĩa toàn câu: 'Múa Xòe và Múa Sạp là những điệu múa dân gian cổ truyền vô cùng đặc trưng của người dân tộc Thái.'<br>3. Tại sao chọn D? Xòe Thái và múa sạp đều là điệu múa di sản dân gian ('folk dances') lâu đời."
+                    },
+                    {
+                        id: "ex1_q10",
+                        q: "We spent hours in _______ house to talk with local people.",
+                        options: ["terraced", "close", "communal", "awesome"],
+                        answer: "communal",
+                        type: "mcq",
+                        exp: "1. Phân tích 4 đáp án:<br>• <span class='exp-word'>communal house</span>: nhà rông nhà chung cộng đồng.<br>• <span class='exp-word'>terraced</span>: bậc thang ruộng bậc thang.<br>• <span class='exp-word'>close</span>: gần gũi đóng cửa.<br>2. Dịch nghĩa toàn câu: 'Chúng tôi dành hàng giờ đồng hồ trò chuyện thân mật với bà con bản địa bên trong ngôi nhà chung (nhà rông) của làng.'<br>3. Tại sao chọn C? 'communal house' nghĩa là nhà sinh hoạt chung, nơi đón tiếp khách quý của bản làng dân tộc."
+                    },
+                    {
+                        id: "ex1_q11",
+                        q: "She wore a _______ costume of bright pink silk.",
+                        options: ["peaceful", "ethnic", "musical", "traditional"],
+                        answer: "traditional",
+                        type: "mcq",
+                        exp: "1. Phân tích 4 đáp án:<br>• <span class='exp-word'>traditional</span> <span class='exp-ipa'>[ /təˈdɪʃənl/ ]</span>: mang tính truyền thống cổ truyền (tính từ).<br>• <span class='exp-word'>peaceful</span>: hòa bình bình lặng.<br>• <span class='exp-word'>ethnic</span>: thuộc về sắc tộc thiểu số.<br>2. Dịch nghĩa toàn câu: 'Cô ấy khoác trên mình bộ trang phục truyền thống may bằng tơ lụa hồng rực rỡ tươi sáng.'<br>3. Tại sao chọn D? 'traditional costume' là một cụm danh từ ghép chỉ trang phục truyền thống của một quốc gia dân tộc."
+                    },
+                    {
+                        id: "ex1_q12",
+                        q: "You can visit Gia Lai to enjoy the gong _______.",
+                        options: ["special", "different", "communal", "festival"],
+                        answer: "festival",
+                        type: "mcq",
+                        exp: "1. Phân tích 4 đáp án:<br>• <span class='exp-word'>festival</span> <span class='exp-ipa'>[ /ˈfestɪvl/ ]</span>: lễ hội ngày hội tưng bừng.<br>• <span class='exp-word'>communal</span>: thuộc cộng đồng công cộng.<br>2. Dịch nghĩa: 'Bạn có thể ghé thăm Gia Lai để hòa mình tham gia lễ hội cồng chiêng đặc sắc nơi núi rừng Tây Nguyên.'<br>3. Tại sao chọn D? 'gong festival' nghĩa là lễ hội văn hóa cồng chiêng độc đáo của Tây Nguyên."
+                    },
+                    {
+                        id: "ex1_q13",
+                        q: "Some _______ farmers keep ducks and geese in their farms.",
+                        options: ["feature", "post", "soil", "poultry"],
+                        answer: "poultry",
+                        type: "mcq",
+                        exp: "1. Phân tích 4 đáp án:<br>• <span class='exp-word'>poultry</span> <span class='exp-ipa'>[ /ˈpəʊltri/ ]</span>: gia cầm chăn nuôi (vịt, ngan, ngỗng, gà).<br>• <span class='exp-word'>soil</span>: đất đai thổ nhưỡng.<br>• <span class='exp-word'>post</span>: cột trụ gỗ.<br>2. Dịch nghĩa: 'Một số nông dân chăn nuôi gia cầm thường nuôi vịt và ngỗng ngay trong khu trang trại của họ.'<br>3. Tại sao chọn D? 'poultry farmers' chỉ người nông dân chuyên chăn nuôi gia cầm (ducks, geese)."
+                    },
+                    {
+                        id: "ex1_q14",
+                        q: "We can _______ the sea from here.",
+                        options: ["raise", "overlook", "enrich", "weave"],
+                        answer: "overlook",
+                        type: "mcq",
+                        exp: "1. Phân tích 4 đáp án:<br>• <span class='exp-word'>overlook</span> <span class='exp-ipa'>[ /ˌəʊvəˈlʊk/ ]</span>: có tầm nhìn hướng mắt nhìn thẳng xuống hướng biển cảnh đẹp.<br>• <span class='exp-word'>raise</span>: nuôi dưỡng nuôi lớn vật nuôi.<br>• <span class='exp-word'>enrich</span>: làm giàu thêm bồi đắp kiến thức.<br>• <span class='exp-word'>weave</span>: dệt vải thủ công mỹ nghệ.<br>2. Dịch nghĩa: 'Từ vị trí này chúng tôi có thể phóng tầm mắt hướng xuống chiêm ngưỡng toàn cảnh bờ biển xanh mát.'<br>3. Tại sao chọn B? 'overlook the sea' diễn tả tầm nhìn tuyệt đẹp của một căn nhà hoặc ngọn đồi hướng ra biển."
+                    },
+                    {
+                        id: "ex1_q15",
+                        q: "Viet Nam has 54 ethnic _______.",
+                        options: ["groups", "levels", "turkeys", "fields"],
+                        answer: "groups",
+                        type: "mcq",
+                        exp: "1. Phân tích 4 đáp án:<br>• <span class='exp-word'>groups</span>: nhóm sắc tộc đồng bào anh em.<br>• <span class='exp-word'>levels</span>: trình độ thứ cấp.<br>• <span class='exp-word'>turkeys</span>: gà tây chăn nuôi.<br>2. Dịch nghĩa: 'Đất nước Việt Nam mến yêu của chúng ta có 54 nhóm dân tộc anh em đoàn kết cùng chung sống.'<br>3. Tại sao chọn A? Cụm thuật ngữ địa lý chính quy luôn là 'ethnic groups' (nhóm dân tộc)."
+                    },
+                    {
+                        id: "ex1_q16",
+                        q: "The Nung mostly live in _______ though they also live in earthen houses.",
+                        options: ["bamboo flute", "wooden statue", "stilt houses", "travel brochure"],
+                        answer: "stilt houses",
+                        type: "mcq",
+                        exp: "1. Phân tích 4 đáp án:<br>• <span class='exp-word'>stilt houses</span>: những ngôi nhà sàn cột gỗ vững vàng.<br>• <span class='exp-word'>bamboo flute</span>: sáo tre thổi sáo.<br>• <span class='exp-word'>wooden statue</span>: tượng điêu khắc gỗ cổ truyền.<br>2. Dịch nghĩa: 'Người Nùng đa phần sinh sống trong những ngôi nhà sàn vững chãi mặc dù họ cũng có những gia đình chọn ở nhà đất nện.'<br>3. Tại sao chọn C? Nhà sàn dệt thêu sinh hoạt ('stilt houses') là biểu tượng cư trú cổ của người Nùng."
+                    },
+                    {
+                        id: "ex1_q17",
+                        q: "The Lunar New Year festival is important _______ the Kinh.",
+                        options: ["to", "with", "for", "of"],
+                        answer: "to",
+                        type: "mcq",
+                        exp: "1. Phân tích giới từ cấu trúc:<br>• Cấu trúc <span class='exp-word'>important to someone</span>: có tầm ảnh hưởng ý nghĩa cực kỳ quan trọng đối với ai đó.<br>2. Dịch nghĩa: 'Kỳ nghỉ Tết Nguyên Đán cổ truyền là lễ hội quan trọng bậc nhất đối với người Kinh.'<br>3. Tại sao chọn A? Dùng giới từ 'to' đi kèm 'important' chỉ đối tượng thụ hưởng giá trị tinh thần cốt lõi."
+                    },
+                    {
+                        id: "ex1_q18",
+                        q: "Sa Pa is famous for the _______ located in the mountainous area.",
+                        options: ["stilt houses", "heritage site", "terraced fields", "wooden statue"],
+                        answer: "terraced fields",
+                        type: "mcq",
+                        exp: "1. Phân tích 4 đáp án:<br>• <span class='exp-word'>terraced fields</span>: những ruộng lúa bậc thang uốn lượn.<br>• <span class='exp-word'>heritage site</span>: di tích di sản thế giới phong cảnh.<br>2. Dịch nghĩa: 'Khu du lịch Sa Pa vô cùng nổi tiếng nhờ vào những thửa ruộng bậc thang đẹp như tranh vẽ nằm giữa vùng thung lũng núi cao Tây Bắc.'<br>3. Tại sao chọn C? Ruộng lúa bậc thang dốc núi cao ('terraced fields') là kỳ quan nông nghiệp độc đáo của Sa Pa."
+                    },
+                    {
+                        id: "ex1_q19",
+                        q: "Lahu, Mang, and Brau are ________ minorities in Viet Nam.",
+                        options: ["traditional", "ethnic", "awesome", "natural"],
+                        answer: "ethnic",
+                        type: "mcq",
+                        exp: "1. Phân tích 4 đáp án:<br>• <span class='exp-word'>ethnic</span>: sắc tộc thiểu số bản địa.<br>• <span class='exp-word'>traditional</span>: mang tính cổ truyền.<br>2. Dịch nghĩa: 'Người La Hủ, người Mảng và đồng bào Brâu là các dân tộc thiểu số tại Việt Nam.'<br>3. Tại sao chọn B? Ghép lại thành cụm từ cố định 'ethnic minorities' nghĩa là đồng bào các dân tộc thiểu số."
+                    },
+                    {
+                        id: "ex1_q20",
+                        q: "The goods in the open-air market are _______. You can find almost everything there.",
+                        options: ["diverse", "similar", "unlike", "like"],
+                        answer: "diverse",
+                        type: "mcq",
+                        exp: "1. Phân tích 4 đáp án:<br>• <span class='exp-word'>diverse</span> <span class='exp-ipa'>[ /daɪˈvɜːs/ ]</span>: vô cùng đa dạng phong phú mẫu mã chủng loại.<br>• <span class='exp-word'>similar</span>: tương tự giống nhau đơn điệu.<br>• <span class='exp-word'>unlike</span>: không giống với dị thường.<br>2. Dịch nghĩa: 'Hàng hóa được bày bán tại chợ phiên vùng cao ngoài trời cực kỳ phong phú và đa dạng. Con gần như có thể tìm kiếm mua sắm bất cứ thứ gì tại đây.'<br>3. Tại sao chọn A? Vế sau giải thích 'find almost everything' chứng tỏ chợ có hàng hóa rất phong phú bạt ngàn ('diverse')."
+                    }
+                ]
+            },
+            "ex1_p2": {
+                title: "Exercise 1: Vocabulary & Grammar (Q21-40)",
+                desc: "Tiếp tục ôn tập các câu cấu trúc ngữ pháp định lượng danh từ đếm được, danh từ không đếm được và từ để hỏi Wh-.",
+                questions: [
+                    {
+                        id: "ex1_q21",
+                        q: "Most ethnic minority peoples are good _______ farming techniques.",
+                        options: ["at", "for", "to", "on"],
+                        answer: "at",
+                        type: "mcq",
+                        exp: "1. Phân tích ngữ pháp giới từ:<br>• Cấu trúc tính từ thông dụng: <span class='exp-word'>be good at + V-ing/Noun</span>: làm giỏi lành nghề thạo một lĩnh vực kỹ năng nào đó.<br>2. Dịch nghĩa: 'Hầu hết đồng bào các dân tộc thiểu số đều vô cùng thạo và giỏi trong các kỹ thuật thâm canh trồng trọt làm nông.'<br>3. Tại sao chọn A? Bắt buộc đi kèm giới từ 'at' theo cụm 'good at'."
+                    },
+                    {
+                        id: "ex1_q22",
+                        q: "The ethnic Khmer live in the _______ of Vietnam.",
+                        options: ["Lowlands", "Highlands", "Mekong Delta", "Red River Delta"],
+                        answer: "Mekong Delta",
+                        type: "mcq",
+                        exp: "1. Phân tích kiến thức địa lý địa chí Việt Nam:<br>• <span class='exp-word'>Mekong Delta</span>: Đồng bằng sông Cửu Long (vùng đất Tây Nam Bộ trù phú nơi đông đảo đồng bào Khmer định cư sinh sống lâu đời).<br>2. Dịch nghĩa: 'Đồng bào dân tộc Khmer chủ yếu quần cư sinh sống ở khu vực đồng bằng sông Cửu Long Việt Nam.'<br>3. Tại sao chọn C? Đây là dữ kiện chính xác về phân bố dân cư sắc tộc Việt Nam."
+                    },
+                    {
+                        id: "ex1_q23",
+                        q: "I’ve got _______ cakes to give away. Would you like one?",
+                        options: ["a little", "a few", "much", "many"],
+                        answer: "a few",
+                        type: "mcq",
+                        exp: "1. Phân tích ngữ pháp danh từ đếm được:<br>• Danh từ 'cakes' (bánh ngọt) là danh từ số nhiều đếm được.<br>• <span class='exp-word'>a few + N(đếm được số nhiều)</span>: một vài chiếc (mang ý khẳng định còn chút ít).<br>• <span class='exp-word'>a little + N(không đếm được)</span>: một chút sữa/nước.<br>2. Dịch nghĩa: 'Tớ có một vài chiếc bánh ngon muốn tặng mọi người ăn thử. Cậu có muốn thưởng thức một chiếc không?'<br>3. Tại sao chọn B? Vì 'cakes' đếm được nên dùng 'a few' là chính xác."
+                    },
+                    {
+                        id: "ex1_q24",
+                        q: "I’ll make a tuna _______ for you.",
+                        options: ["sandwiches", "sandwichs", "sandwicheses", "sandwich"],
+                        answer: "sandwich",
+                        type: "mcq",
+                        exp: "1. Phân tích số ít số nhiều:<br>• Mạo từ <span class='exp-word'>a</span> (một cái) yêu cầu danh từ đếm được đứng sau phải ở dạng số ít nguyên bản.<br>• <span class='exp-word'>sandwich</span>: bánh mì kẹp thịt (số ít).<br>2. Dịch nghĩa: 'Tớ sẽ làm một chiếc bánh mì kẹp cá ngừ béo ngậy thơm ngon tặng cho cậu ăn lót dạ nhé.'<br>3. Tại sao chọn D? Vì mạo từ 'a' bắt buộc đi với danh từ số ít 'sandwich' không thêm 'es'."
+                    },
+                    {
+                        id: "ex1_q25",
+                        q: "Vietnamese people are used to using _______ when having meals.",
+                        options: ["chopstick", "chopsticks", "chopstickes", "a chopstick"],
+                        answer: "chopsticks",
+                        type: "mcq",
+                        exp: "1. Phân tích văn hóa và từ loại:<br>• Đôi đũa khi dùng ăn cơm luôn tồn tại ở dạng số nhiều có hai chiếc đi cặp.<br>• <span class='exp-word'>chopsticks</span> <span class='exp-ipa'>[ /ˈtʃɒpstɪks/ ]</span>: đôi đũa gắp cơm.<br>2. Dịch nghĩa: 'Người Việt Nam chúng ta có thói quen truyền thống lâu đời là dùng đũa khi ăn cơm hàng ngày.'<br>3. Tại sao chọn B? Đôi đũa luôn phải dùng dạng số nhiều số 'chopsticks' có s."
+                    },
+                    {
+                        id: "ex1_q26",
+                        q: "There's _______ milk left in the fridge. It should be enough for our coffee.",
+                        options: ["a little", "little", "a few", "few"],
+                        answer: "a little",
+                        type: "mcq",
+                        exp: "1. Phân tích ngữ pháp lượng từ:<br>• 'milk' (sữa tươi) là danh từ không đếm được.<br>• <span class='exp-word'>a little</span>: một chút (đủ để dùng).<br>• <span class='exp-word'>little</span>: gần như không còn gì (mang nghĩa tiêu cực).<br>2. Dịch nghĩa: 'Vẫn còn một chút sữa tươi bên trong tủ lạnh đó con. Lượng sữa đó chắc chắn là đủ để pha cà phê sữa thơm ngậy cho chúng ta rồi.'<br>3. Tại sao chọn A? Ngữ cảnh 'enough' (đủ dùng) chứng tỏ phải chọn 'a little' để diễn tả số lượng tuy ít nhưng vừa đủ."
+                    },
+                    {
+                        id: "ex1_q27",
+                        q: "How _______ ethnic groups in Viet Nam do you know?",
+                        options: ["much", "often", "many", "tall"],
+                        answer: "many",
+                        type: "mcq",
+                        exp: "1. Phân tích cấu trúc hỏi số lượng:<br>• 'ethnic groups' là danh từ đếm được số nhiều.<br>• Cấu trúc: <span class='exp-word'>How many + N(đếm được số nhiều)</span>: Hỏi có bao nhiêu cái/nhóm.<br>2. Dịch nghĩa: 'Con biết được bao nhiêu nhóm dân tộc anh em đang sinh sống tại Việt Nam chúng ta?'<br>3. Tại sao chọn C? 'ethnic groups' đếm được nên dùng 'How many' để hỏi số lượng."
+                    },
+                    {
+                        id: "ex1_q28",
+                        q: "You can get _______ information if you go to the museum with me.",
+                        options: ["a lot of", "many", "a", "any"],
+                        answer: "a lot of",
+                        type: "mcq",
+                        exp: "1. Phân tích lượng từ đi với danh từ không đếm được:<br>• 'information' (thông tin dữ liệu) là danh từ không đếm được, không đi với 'many' hay mạo từ 'a'.<br>• <span class='exp-word'>a lot of</span>: rất nhiều (đi kèm được với cả danh từ đếm được số nhiều và không đếm được).<br>2. Dịch nghĩa: 'Con sẽ tìm hiểu và thu lượm được cực kỳ nhiều thông tin bổ ích nếu con cùng ghé thăm bảo tàng dân tộc học với cô.'<br>3. Tại sao chọn A? Vì 'a lot of' phù hợp ngữ pháp bổ nghĩa cho danh từ không đếm được 'information' trong câu khẳng định."
+                    },
+                    {
+                        id: "ex1_q29",
+                        q: "In our area, _______ not much land for growing crops.",
+                        options: ["there are", "it has", "it is", "there is"],
+                        answer: "there is",
+                        type: "mcq",
+                        exp: "1. Phân tích cấu trúc tồn tại 'There is/are':<br>• 'land' (đất đai trồng trọt) là danh từ không đếm được -> dùng động từ tobe số ít 'is'.<br>• Cấu trúc: <span class='exp-word'>There is + N(không đếm được)</span>: Có cái gì đó hiện hữu.<br>2. Dịch nghĩa: 'Ở khu vực vùng cao của chúng tôi, không có quá nhiều đất đai rộng rãi để trồng trọt lương thực gieo hạt.'<br>3. Tại sao chọn D? 'there is' bổ nghĩa cho 'not much land' là chuẩn xác ngữ pháp nhất."
+                    },
+                    {
+                        id: "ex1_q30",
+                        q: "How_______ milk is there in the carton?",
+                        options: ["many", "much", "a lot of", "few"],
+                        answer: "much",
+                        type: "mcq",
+                        exp: "1. Phân tích câu hỏi lượng:<br>• 'milk' (sữa nước) là danh từ không đếm được.<br>• Cấu trúc hỏi bao nhiêu: <span class='exp-word'>How much + N(không đếm được)</span>.<br>2. Dịch nghĩa: 'Còn lại bao nhiêu lượng sữa tươi bên trong hộp giấy vậy con?'<br>3. Tại sao chọn B? 'milk' không đếm được nên bắt buộc dùng từ để hỏi 'How much'."
+                    },
+                    {
+                        id: "ex1_q31",
+                        q: "Do you have _______ about ethnic minority groups in Viet Nam?",
+                        options: ["a few books", "a lot of books", "any books", "any book"],
+                        answer: "any books",
+                        type: "mcq",
+                        exp: "1. Phân tích câu nghi vấn nghi hỏi:<br>• Trong câu hỏi nghi vấn, ta sử dụng lượng từ <span class='exp-word'>any</span> đi kèm danh từ đếm được số nhiều 'books' để dò hỏi sự tồn tại.<br>2. Dịch nghĩa: 'Bạn có sở hữu cuốn sách tư liệu nào viết về các dân tộc thiểu số tại Việt Nam không?'<br>3. Tại sao chọn C? 'any books' chuẩn chỉnh công thức câu hỏi nghi vấn đếm được."
+                    },
+                    {
+                        id: "ex1_q32",
+                        q: "We are going to cook Vietnamese food including _______ and _______.",
+                        options: ["fried rices / beef noodle soup", "fried rice / beef noodle soups", "fried rice/ beef noodle soup", "fried rices / beef noodle soups"],
+                        answer: "fried rice/ beef noodle soup",
+                        type: "mcq",
+                        exp: "1. Phân tích danh từ món ăn ẩm thực:<br>• 'fried rice' (cơm chiên) và 'beef noodle soup' (phở bò/bún bò) được coi là các danh từ không đếm được khi chỉ chung tên các món ăn thực đơn ẩm thực.<br>2. Dịch nghĩa: 'Chúng tớ chuẩn bị nấu món ăn thuần Việt bao gồm cơm rang dẻo và món phở bò thơm nức lòng.'<br>3. Tại sao chọn C? Giữ nguyên dạng không thêm số nhiều cho tên món ăn chung chung này."
+                    },
+                    {
+                        id: "ex1_q33",
+                        q: "_______ your grandmother like folk _______?",
+                        options: ["Do-music", "Do-musics", "Does – music", "Is – music"],
+                        answer: "Does – music",
+                        type: "mcq",
+                        exp: "1. Phân tích trợ động từ hiện tại đơn:<br>• Chủ ngữ 'your grandmother' (bà của bạn) là danh từ ngôi thứ ba số ít -> mượn trợ động từ <span class='exp-word'>Does</span>.<br>• 'music' (âm nhạc) là danh từ không đếm được, không thêm s.<br>2. Dịch nghĩa: 'Bà của bạn có yêu thích nghe thể loại âm nhạc dân gian cổ truyền không?'<br>3. Tại sao chọn C? Khớp hoàn hảo trợ động từ số ít 'Does' và danh từ không đếm được 'music'."
+                    },
+                    {
+                        id: "ex1_q34",
+                        q: "_______ there 54 ethnic groups in Viet Nam?",
+                        options: ["Are", "Is", "Do", "Does"],
+                        answer: "Are",
+                        type: "mcq",
+                        exp: "1. Phân tích câu hỏi Có không với 'there':<br>• Chủ ngữ sau 'there' là '54 ethnic groups' là danh từ số nhiều đếm được -> dùng động từ tobe số nhiều <span class='exp-word'>Are</span>.<br>2. Dịch nghĩa: 'Có phải có tất cả 54 dân tộc anh em cùng sinh sống tại Việt Nam không con?'<br>3. Tại sao chọn A? Vì 'groups' số nhiều cần động từ tobe số nhiều 'Are'."
+                    },
+                    {
+                        id: "ex1_q35",
+                        q: "_______ stilt houses stand on wood, bamboo, and _______?",
+                        options: ["Do-leaf", "Does - leaves", "Does – leaf", "Do – leaves"],
+                        answer: "Do – leaves",
+                        type: "mcq",
+                        exp: "1. Phân tích chủ ngữ số nhiều:<br>• Chủ ngữ 'stilt houses' (những ngôi nhà sàn) là số nhiều -> dùng trợ động từ <span class='exp-word'>Do</span> trong câu hỏi.<br>• Danh từ 'leaf' (chiếc lá) có dạng số nhiều bất quy tắc là <span class='exp-word'>leaves</span> (những chiếc lá tranh lợp mái).<br>2. Dịch nghĩa: 'Có phải những ngôi nhà sàn truyền thống được dựng đứng vững trên nền gỗ, tre dầm và lợp mái lá cỏ không?'<br>3. Tại sao chọn D? Khớp chuẩn trợ động từ 'Do' và dạng số nhiều 'leaves' chỉ mái lá lợp nhà sàn."
+                    },
+                    {
+                        id: "ex1_q36",
+                        q: "_______ do you usually eat lunch? - At noon.",
+                        options: ["Which", "When", "What", "How"],
+                        answer: "When",
+                        type: "mcq",
+                        exp: "1. Phân tích từ để hỏi dựa vào câu trả lời:<br>• Câu trả lời 'At noon' (vào buổi trưa) chỉ mốc thời gian -> từ để hỏi thời gian phải là <span class='exp-word'>When</span> (khi nào).<br>2. Dịch nghĩa: 'Khi nào thì bạn thường ăn cơm trưa thế? - Thường là vào lúc giữa trưa tròn bóng nhé.'<br>3. Tại sao chọn B? 'When' dùng để hỏi thời gian mốc giờ giấc sinh hoạt."
+                    },
+                    {
+                        id: "ex1_q37",
+                        q: "_______ do you wash clothes? - Every week.",
+                        options: ["Which", "Who", "What", "How often"],
+                        answer: "How often",
+                        type: "mcq",
+                        exp: "1. Phân tích câu hỏi tần suất mức độ:<br>• Câu trả lời 'Every week' (mỗi tuần hàng tuần) chỉ tần suất thực hiện hành động -> dùng từ để hỏi tần suất <span class='exp-word'>How often</span> (có thường xuyên không).<br>2. Dịch nghĩa: 'Bạn có thường giặt giũ quần áo của mình không? - Tớ tự giặt đều đặn mỗi tuần một lần nhé.'<br>3. Tại sao chọn D? 'How often' chuyên dùng hỏi mức độ thường xuyên định kỳ."
+                    },
+                    {
+                        id: "ex1_q38",
+                        q: "_______ does your father work? - At City Hall.",
+                        options: ["Where", "Who", "What", "How"],
+                        answer: "Where",
+                        type: "mcq",
+                        exp: "1. Phân tích hỏi địa điểm nơi chốn:<br>• Câu trả lời 'At City Hall' (tại tòa thị chính thành phố) chỉ địa điểm nơi làm việc -> từ để hỏi nơi chốn phải là <span class='exp-word'>Where</span> (ở đâu).<br>2. Dịch nghĩa: 'Bố của bạn đang công tác làm việc ở đâu thế? - Bố tớ làm việc tại tòa thị chính thành phố.'<br>3. Tại sao chọn A? 'Where' hỏi về vị trí vị trí địa điểm công sở."
+                    },
+                    {
+                        id: "ex1_q39",
+                        q: "_______ usually gets up the earliest in your family?",
+                        options: ["Which", "Who", "What", "How"],
+                        answer: "Who",
+                        type: "mcq",
+                        exp: "1. Phân tích hỏi danh tính con người:<br>• Câu hỏi nhắm vào chủ ngữ thực hiện hành động thức dậy sớm nhất trong nhà -> từ để hỏi chủ thể người là <span class='exp-word'>Who</span> (ai).<br>2. Dịch nghĩa: 'Ai là người thường thức dậy sửa soạn sớm nhất trong gia đình của bạn vậy?'<br>3. Tại sao chọn B? 'Who' làm chủ ngữ hỏi người thực hiện hành động thức giấc."
+                    },
+                    {
+                        id: "ex1_q40",
+                        q: "_______ do you think of this hotel? - It's pretty good.",
+                        options: ["Which", "Why", "What", "How"],
+                        answer: "What",
+                        type: "mcq",
+                        exp: "1. Phân tích cấu trúc hỏi ý kiến cảm nhận:<br>• Cấu trúc hỏi cảm nghĩ: <span class='exp-word'>What do you think of + Noun?</span>: Bạn nghĩ sao / đánh giá thế nào về cái gì đó.<br>2. Dịch nghĩa: 'Bạn đánh giá như thế nào về chất lượng dịch vụ phòng của khách sạn này? - Tớ thấy rất tốt và chu đáo.'<br>3. Tại sao chọn C? Cấu trúc cố định dùng 'What do you think of' (không dùng How trong cấu trúc này trừ phi dùng How do you feel about)."
+                    }
+                ]
+            },
+            "ex1_p3": {
+                title: "Exercise 1: Vocabulary & Grammar (Q41-60)",
+                desc: "Hoàn thiện 20 câu cuối cùng của phần bài tập Ngữ pháp tổng hợp trước khi chuyển sang các bài tập thực hành sâu.",
+                questions: [
+                    {
+                        id: "ex1_q41",
+                        q: "_______ do you work at that company? - Because it’s near my house.",
+                        options: ["Which", "Who", "Why", "Where"],
+                        answer: "Why",
+                        type: "mcq",
+                        exp: "1. Phân tích hỏi lý do nguyên cớ:<br>• Câu trả lời bắt đầu bằng liên từ nguyên nhân 'Because' (bởi vì...) -> từ để hỏi lý do bắt buộc phải là <span class='exp-word'>Why</span> (tại sao).<br>2. Dịch nghĩa: 'Tại sao bạn lại nộp đơn xin việc làm tại công ty đó thế? - Bởi vì nó rất gần nhà của tớ thuận tiện di chuyển.'<br>3. Tại sao chọn C? 'Why' dùng để hỏi nguyên nhân động cơ."
+                    },
+                    {
+                        id: "ex1_q42",
+                        q: "_______ dances the best in your family?",
+                        options: ["Which", "Who", "What", "How"],
+                        answer: "Who",
+                        type: "mcq",
+                        exp: "1. Phân tích hỏi đối tượng người:<br>• Hỏi về người nhảy/múa đẹp nhất trong gia đình -> dùng từ để hỏi người <span class='exp-word'>Who</span>.<br>2. Dịch nghĩa: 'Ai là người khiêu vũ nhảy múa dẻo và đẹp mắt nhất trong gia đình của bạn thế?'<br>3. Tại sao chọn B? 'Who' làm chủ thể đại từ hỏi người."
+                    },
+                    {
+                        id: "ex1_q43",
+                        q: "_______ is it from the centre to the Museum of Ethnology? ~ It’s about seven kilometers.",
+                        options: ["How long", "How far", "How often", "How much"],
+                        answer: "How far",
+                        type: "mcq",
+                        exp: "1. Phân tích hỏi khoảng cách địa lý:<br>• Câu trả lời là 'about seven kilometers' (khoảng 7 ki-lô-mét) chỉ cự ly khoảng cách địa lý -> dùng cụm từ hỏi khoảng cách <span class='exp-word'>How far</span> (bao xa).<br>2. Dịch nghĩa: 'Từ khu vực trung tâm thành phố tới Bảo tàng Dân tộc học là bao xa vậy bạn? ~ Khoảng tầm 7 cây số nhé.'<br>3. Tại sao chọn B? 'How far' chuyên dùng để hỏi khoảng cách giữa hai địa điểm hành trình."
+                    },
+                    {
+                        id: "ex1_q44",
+                        q: "_______ can I buy some milk? - At the supermarket.",
+                        options: ["Which", "Who", "Where", "How"],
+                        answer: "Where",
+                        type: "mcq",
+                        exp: "1. Phân tích hỏi nơi chốn địa điểm:<br>• Câu trả lời 'At the supermarket' (tại siêu thị mua sắm) chỉ địa điểm chốn giao dịch -> dùng từ hỏi địa điểm <span class='exp-word'>Where</span>.<br>2. Dịch nghĩa: 'Tớ có thể tìm mua một ít sữa tươi ở đâu bây giờ nhỉ? - Ra ngay siêu thị đầu phố nhé.'<br>3. Tại sao chọn C? 'Where' hỏi về địa điểm thực hiện giao dịch."
+                    },
+                    {
+                        id: "ex1_q45",
+                        q: "_______ much do you weigh?",
+                        options: ["Which", "Who", "What", "How"],
+                        answer: "How",
+                        type: "mcq",
+                        exp: "1. Phân tích cấu trúc hỏi trọng lượng cân nặng:<br>• Cấu trúc hỏi cân nặng cơ thể: <span class='exp-word'>How much do you weigh?</span>.<br>2. Dịch nghĩa: 'Cân nặng hiện tại của con là bao nhiêu ký thế?'<br>3. Tại sao chọn D? Đi kèm với từ chỉ mức độ 'much' trong câu hỏi cân nặng chỉ có từ 'How'."
+                    },
+                    {
+                        id: "ex1_q46",
+                        q: "_______ hat is this? - It's my brother's.",
+                        options: ["Which", "Whose", "What", "How"],
+                        answer: "Whose",
+                        type: "mcq",
+                        exp: "1. Phân tích hỏi chủ quyền sở hữu:<br>• Câu trả lời 'It's my brother's' (Đó là của anh trai tớ - có sở hữu cách 's) -> từ để hỏi chủ sở hữu là <span class='exp-word'>Whose</span> (của ai).<br>2. Dịch nghĩa: 'Chiếc mũ lưỡi trai này là của ai thế nhỉ? - À, đó là mũ của anh trai tớ đó.'<br>3. Tại sao chọn B? 'Whose + Noun' hỏi xem đồ vật thuộc sở hữu của ai."
+                    },
+                    {
+                        id: "ex1_q47",
+                        q: "_______ do you like your tea? - I like it with cream and sugar.",
+                        options: ["Which", "Who", "What", "How"],
+                        answer: "How",
+                        type: "mcq",
+                        exp: "1. Phân tích câu hỏi phương thức cảm nhận:<br>• Câu trả lời mô tả cách thức pha chế trà 'with cream and sugar' (uống kèm kem béo và đường ngọt) -> dùng từ để hỏi cách thức <span class='exp-word'>How</span> (như thế nào).<br>2. Dịch nghĩa: 'Bạn muốn thưởng trà theo cách như thế nào? - Tớ thích uống trà pha kèm kem sữa và chút đường ngọt đậm đà.'<br>3. Tại sao chọn D? 'How do you like...' hỏi về sở thích cách thức chế biến đồ ăn đồ uống phục vụ."
+                    },
+                    {
+                        id: "ex1_q48",
+                        q: "_______ picture do you prefer, this one or that one?",
+                        options: ["Which", "Who", "What", "How"],
+                        answer: "Which",
+                        type: "mcq",
+                        exp: "1. Phân tích câu hỏi sự lựa chọn giới hạn:<br>• Có mệnh đề lựa chọn 'this one or that one' (bức này hay bức kia - giới hạn trong 2 đối tượng) -> bắt buộc dùng từ hỏi lựa chọn xác định <span class='exp-word'>Which</span> (cái nào trong số các lựa chọn này).<br>2. Dịch nghĩa: 'Bạn ưa chuộng thích bức tranh vẽ nào hơn, bức này hay là bức treo đằng kia?'<br>3. Tại sao chọn A? 'Which' dùng khi người hỏi đưa ra một nhóm lựa chọn cụ thể giới hạn cho người nghe chọn lựa."
+                    },
+                    {
+                        id: "ex1_q49",
+                        q: "_______ is that woman? - I think she is a teacher.",
+                        options: ["Which", "Who", "When", "How"],
+                        answer: "Who",
+                        type: "mcq",
+                        exp: "1. Phân tích hỏi danh tính:<br>• Trả lời 'she is a teacher' (cô ấy là giáo viên trường) chỉ danh tính nghề nghiệp con người -> dùng từ hỏi người <span class='exp-word'>Who</span> (ai thế).<br>2. Dịch nghĩa: 'Người phụ nữ đứng đằng kia là ai thế bạn? - Tớ nghĩ cô ấy là một giáo viên dạy học.'<br>3. Tại sao chọn B? 'Who' hỏi danh tính vai trò của một người."
+                    },
+                    {
+                        id: "ex1_q50",
+                        q: "Do you know _______ language is spoken in Kenya?",
+                        options: ["which", "who", "what", "how"],
+                        answer: "which",
+                        type: "mcq",
+                        exp: "1. Phân tích hỏi ngôn ngữ xác định của một quốc gia:<br>• Hỏi về một ngôn ngữ cụ thể trong số các ngôn ngữ trên thế giới được dùng tại Kenya -> dùng từ lựa chọn <span class='exp-word'>which</span> hoặc 'what', tuy nhiên 'which language' thường dùng trong văn cảnh học thuật chỉ sự lựa chọn danh mục ngôn ngữ hành chính quốc gia.<br>2. Dịch nghĩa: 'Bạn có biết ngôn ngữ cụ thể nào được sử dụng làm tiếng nói chính thức tại đất nước Kenya không?'<br>3. Tại sao chọn A? 'which language' là lối diễn đạt chuẩn chỉ nhất."
+                    },
+                    {
+                        id: "ex1_q51",
+                        q: "_______ is your blood type?",
+                        options: ["Which", "Who", "What", "How"],
+                        answer: "What",
+                        type: "mcq",
+                        exp: "1. Phân tích cấu trúc hỏi nhóm máu:<br>• Câu hỏi thuộc về thông tin định danh phạm trù rộng -> dùng <span class='exp-word'>What</span> (như What is your name / What is your phone number).<br>2. Dịch nghĩa: 'Nhóm máu của con là nhóm máu gì thế?'<br>3. Tại sao chọn C? 'What is your blood type' là câu hỏi chuẩn y khoa để hỏi nhóm máu hệ ABO."
+                    },
+                    {
+                        id: "ex1_q52",
+                        q: "_______ do you play tennis? - For exercise.",
+                        options: ["Which", "Who", "Why", "How"],
+                        answer: "Why",
+                        type: "mcq",
+                        exp: "1. Phân tích từ hỏi lý do mục đích:<br>• Trả lời 'For exercise' (để rèn luyện nâng cao sức khỏe - chỉ mục đích lý do thực hiện hành động) -> dùng từ hỏi lý do động cơ <span class='exp-word'>Why</span>.<br>2. Dịch nghĩa: 'Tại sao bạn lại siêng năng chơi quần vợt tennis vậy? - Để rèn luyện sức bền và sức khỏe đó mà.'<br>3. Tại sao chọn C? 'Why' phù hợp nhất để hỏi động cơ mục đích sống lành mạnh."
+                    },
+                    {
+                        id: "ex1_q53",
+                        q: "_______ can I park my car? - Over there.",
+                        options: ["Where", "Who", "What", "How"],
+                        answer: "Where",
+                        type: "mcq",
+                        exp: "1. Phân tích hỏi địa điểm nơi đỗ xe:<br>• Trả lời 'Over there' (ở đằng kia kìa - chỉ phương hướng địa điểm nơi đỗ) -> dùng từ hỏi nơi chốn địa điểm <span class='exp-word'>Where</span>.<br>2. Dịch nghĩa: 'Tớ có thể đỗ xe hơi cá nhân ở đâu bây giờ bạn nhỉ? - Đỗ ở bãi xe đằng kia kìa bạn.'<br>3. Tại sao chọn A? 'Where' hỏi về bãi đỗ bến bãi đỗ xe hợp quy."
+                    },
+                    {
+                        id: "ex1_q54",
+                        q: "_______ tall are you?",
+                        options: ["Which", "Who", "What", "How"],
+                        answer: "How",
+                        type: "mcq",
+                        exp: "1. Phân tích hỏi mức độ chiều cao:<br>• Cấu trúc hỏi chiều cao cơ thể: <span class='exp-word'>How tall + be + S?</span>.<br>2. Dịch nghĩa: 'Con sở hữu chiều cao hiện tại là bao nhiêu thế?'<br>3. Tại sao chọn D? Từ chỉ mức độ 'How' đứng trước tính từ 'tall' để tạo thành cụm từ hỏi số đo chiều cao."
+                    },
+                    {
+                        id: "ex1_q55",
+                        q: "_______ do you expect me to do?",
+                        options: ["Which", "Who", "What", "How"],
+                        answer: "What",
+                        type: "mcq",
+                        exp: "1. Phân tích hỏi hành động mục tiêu:<br>• Cấu trúc hỏi ý muốn kỳ vọng hành động: <span class='exp-word'>What do you expect someone to do?</span>: Bạn mong đợi tôi sẽ làm điều gì cho bạn đây.<br>2. Dịch nghĩa: 'Bạn đang mong đợi tớ sẽ làm việc gì giúp đỡ cho bạn lúc này?'<br>3. Tại sao chọn C? 'What' đóng vai trò tân ngữ cho hành động 'to do' ở cuối câu hỏi."
+                    },
+                    {
+                        id: "ex1_q56",
+                        q: "_______ does it cost to visit this bamboo village?",
+                        options: ["How many", "How much", "How often", "How"],
+                        answer: "How much",
+                        type: "mcq",
+                        exp: "1. Phân tích hỏi giá cả chi phí:<br>• Cấu trúc hỏi giá tiền chi phí dịch vụ/vé vào cổng: <span class='exp-word'>How much does it cost...?</span>.<br>2. Dịch nghĩa: 'Tốn bao nhiêu chi phí tiền vé để có thể vào tham quan bản làng tre xanh mát này vậy bạn?'<br>3. Tại sao chọn B? 'How much' kết hợp với động từ 'cost' dùng hỏi về giá tiền tài chính chi trả."
+                    },
+                    {
+                        id: "ex1_q57",
+                        q: "_______ is your favorite subject at school?",
+                        options: ["Who", "What", "How", "Which"],
+                        answer: "What",
+                        type: "mcq",
+                        exp: "1. Phân tích hỏi môn học yêu thích nhất:<br>• Hỏi về danh tính môn học phạm trù rộng mở -> dùng từ hỏi <span class='exp-word'>What</span>.<br>2. Dịch nghĩa: 'Môn học yêu thích nhất của con trên lớp học là môn học gì thế?'<br>3. Tại sao chọn B? Câu hỏi phổ biến hỏi về sở thích môn học 'What is your favorite subject'."
+                    },
+                    {
+                        id: "ex1_q58",
+                        q: "_______ are you going to travel to Hoi An? – Next weekend.",
+                        options: ["When", "What", "How", "Where"],
+                        answer: "When",
+                        type: "mcq",
+                        exp: "1. Phân tích hỏi mốc thời gian hành trình:<br>• Trả lời 'Next weekend' (cuối tuần tới - mốc thời gian cụ thể) -> từ để hỏi thời gian bắt buộc phải là <span class='exp-word'>When</span>.<br>2. Dịch nghĩa: 'Khi nào thì bạn có kế hoạch đi du lịch phố cổ Hội An thế? – Cuối tuần tới nhé bạn.'<br>3. Tại sao chọn A? 'When' hỏi thời điểm khởi hành chuyến đi nghỉ."
+                    },
+                    {
+                        id: "ex1_q59",
+                        q: "_______ do you go to the gym? – Three times a week.",
+                        options: ["How often", "How many", "What", "When"],
+                        answer: "How often",
+                        type: "mcq",
+                        exp: "1. Phân tích câu hỏi tần suất tập luyện:<br>• Trả lời 'Three times a week' (3 lần một tuần - chỉ tần suất thói quen) -> dùng từ để hỏi <span class='exp-word'>How often</span>.<br>2. Dịch nghĩa: 'Bạn có thường xuyên đi tới phòng tập thể hình gym không? – Đều đặn ba lần một tuần nhé.'<br>3. Tại sao chọn A? Hỏi tần suất chu kỳ dùng cụm hỏi thói quen 'How often'."
+                    },
+                    {
+                        id: "ex1_q60",
+                        q: "_______ is sitting next to Lan? – It’s her best friend, Mai.",
+                        options: ["What", "Where", "Who", "How"],
+                        answer: "Who",
+                        type: "mcq",
+                        exp: "1. Phân tích hỏi danh tính người ngồi cạnh:<br>• Trả lời 'It’s her best friend, Mai' (Đó là bạn thân của cô ấy, Mai - chỉ người) -> dùng từ hỏi người <span class='exp-word'>Who</span>.<br>2. Dịch nghĩa: 'Ai đang ngồi cạnh Lan ở bàn học thế kia? – Đó chính là Mai, bạn thân nhất của cô ấy đó.'<br>3. Tại sao chọn C? 'Who' dùng hỏi danh tính người ngồi kế bên."
+                    }
+                ]
+            },
+            "ex2": {
+                title: "Exercise 2: Circle the correct words in brackets",
+                desc: "Rèn luyện phân biệt danh từ đếm được số nhiều và danh từ không đếm được thông qua các câu chọn từ đôi.",
+                questions: [
+                    { id: "ex2_1", q: "She doesn’t have any [option].", options: ["money", "moneys"], answer: "money", type: "mcq_simple", exp: "'money' (tiền bạc) là danh từ không đếm được đặc thù trong tiếng Anh, hoàn toàn không được tồn tại dạng thêm s số nhiều 'moneys'." },
+                    { id: "ex2_2", q: "There are lots of [option] for minority children nowadays.", options: ["school", "schools"], answer: "schools", type: "mcq_simple", exp: "Đứng sau cụm từ chỉ lượng lớn 'lots of' bổ nghĩa cho danh từ đếm được, danh từ bắt buộc phải chia ở dạng số nhiều -> 'schools'." },
+                    { id: "ex2_3", q: "There are many [option] in the city.", options: ["service", "services"], answer: "services", type: "mcq_simple", exp: "Đứng sau từ chỉ số lượng nhiều 'many', danh từ đếm được 'service' bắt buộc phải đổi đuôi chia ở số nhiều -> 'services'." },
+                    { id: "ex2_4", q: "[option] in the mountains live close to nature.", options: ["Person", "People"], answer: "People", type: "mcq_simple", exp: "'People' (mọi người) là danh từ số nhiều bất quy tắc của danh từ số ít 'person', động từ chính 'live' giữ nguyên nguyên mẫu không chia s chứng tỏ chủ ngữ phải là số nhiều 'People'." },
+                    { id: "ex2_5", q: "We will build a [option] next year.", options: ["boarding school", "boarding schools"], answer: "boarding school", type: "mcq_simple", exp: "Mạo từ số ít 'a' (một ngôi trường nội trú) đứng trước yêu cầu danh từ theo sau phải giữ nguyên dạng danh từ số ít -> 'boarding school'." },
+                    { id: "ex2_6", q: "The Kinh is the largest ethnic [option] in Viet Nam.", options: ["group", "groups"], answer: "group", type: "mcq_simple", exp: "Chủ ngữ 'The Kinh' (Người Kinh) được so sánh là một nhóm dân tộc đơn lẻ lớn nhất ('the largest ethnic...'), do đó danh từ chính phải ở số ít -> 'group'." },
+                    { id: "ex2_7", q: "What is [option] in your village like?", options: ["life", "lives"], answer: "life", type: "mcq_simple", exp: "Hỏi về cuộc sống (danh từ không đếm được trừu tượng chỉ trải nghiệm sinh hoạt) -> dùng dạng số ít 'life' đi với động từ tobe 'is'." },
+                    { id: "ex2_8", q: "Banh Chung is made from [option].", options: ["sticky rice", "sticky rices"], answer: "sticky rice", type: "mcq_simple", exp: "'sticky rice' (gạo nếp dẻo) thuộc nhóm danh từ chất liệu không đếm được nông sản, không có dạng số nhiều thêm s 'sticky rices'." },
+                    { id: "ex2_9", q: "He thinks doing puzzles takes much [option].", options: ["time", "times"], answer: "time", type: "mcq_simple", exp: "Đứng sau lượng từ chỉ mức độ nhiều 'much' bắt buộc phải là danh từ không đếm được 'time' (thời gian vàng ngọc), còn 'times' mang nghĩa là số lần/thời đại." },
+                    { id: "ex2_10", q: "Teens need eight to ten [option] of sleep a day.", options: ["hour", "hours"], answer: "hours", type: "mcq_simple", exp: "Số đo thời gian từ 'eight to ten' (từ 8 đến 10 tiếng đồng hồ) là số lượng nhiều -> danh từ đếm được 'hour' phải thêm s thành 'hours'." }
+                ]
+            },
+            "ex3": {
+                title: "Exercise 3: Write the correct word to complete the answers",
+                desc: "Thực hành hoàn thiện câu trả lời ngắn (Yes/No short answers) chuẩn chỉnh cấu trúc ngữ pháp trợ động từ.",
+                questions: [
+                    { id: "ex3_1", q: "Are they minority people? – Yes, they [option].", options: ["are", "do", "can", "were"], answer: "are", type: "mcq_simple", exp: "Câu hỏi bắt đầu bằng động từ tobe số nhiều 'Are they...?' -> Câu trả lời ngắn khẳng định tương ứng là 'Yes, they are'." },
+                    { id: "ex3_2", q: "Can you go with us this afternoon? – Yes, I [option].", options: ["can", "could", "do", "am"], answer: "can", type: "mcq_simple", exp: "Câu hỏi mượn động từ khuyết thiếu khả năng 'Can you...?' -> Trả lời ngắn khẳng định tương ứng là 'Yes, I can'." },
+                    { id: "ex3_3", q: "Was Mai at home alone yesterday? – No, she [option].", options: ["wasn't", "weren't", "isn't", "didn't"], answer: "wasn't", type: "mcq_simple", exp: "Câu hỏi bắt đầu bằng động từ tobe quá khứ số ít 'Was Mai...?' -> Câu trả lời ngắn phủ định tương ứng là 'No, she wasn't'." },
+                    { id: "ex3_4", q: "Did they catch fish in the river? – No, they [option].", options: ["didn't", "don't", "haven't", "wasn't"], answer: "didn't", type: "mcq_simple", exp: "Câu hỏi mượn trợ động từ quá khứ đơn 'Did they...?' -> Câu trả lời ngắn phủ định tương ứng là 'No, they didn't'." },
+                    { id: "ex3_5", q: "Does it have an open fire in the middle of the house? – Yes, it [option].", options: ["does", "is", "has", "do"], answer: "does", type: "mcq_simple", exp: "Câu hỏi mượn trợ động từ hiện tại đơn số ít 'Does it...?' -> Câu trả lời ngắn khẳng định tương ứng là 'Yes, it does'." },
+                    { id: "ex3_6", q: "Will you visit the village of the Ede? – No, we [option].", options: ["will not", "won't not", "do not", "are not"], answer: "will not", type: "mcq_simple", exp: "Câu hỏi thì tương lai đơn mượn 'Will you...?' -> Câu trả lời ngắn phủ định là 'No, we will not' (hoặc viết tắt là won't)." },
+                    { id: "ex3_7", q: "Were they weaving clothing at that time? – Yes, they [option].", options: ["were", "was", "did", "are"], answer: "were", type: "mcq_simple", exp: "Câu hỏi thì quá khứ tiếp diễn mượn tobe 'Were they...?' -> Câu trả lời ngắn khẳng định là 'Yes, they were'." },
+                    { id: "ex3_8", q: "May I open the book? – No, you [option].", options: ["may not", "must not", "shouldn't", "don't"], answer: "may not", type: "mcq_simple", exp: "Câu hỏi xin phép lịch sự bắt đầu bằng 'May I...?' -> Câu trả lời ngắn phủ định không cho phép tương ứng là 'No, you may not'." },
+                    { id: "ex3_9", q: "Should I stay up too late? – No, you [option].", options: ["shouldn't", "oughtn't", "mustn't", "don't"], answer: "shouldn't", type: "mcq_simple", exp: "Câu hỏi xin lời khuyên khuyên răn 'Should I...?' -> Câu trả lời khuyên ngăn phủ định tương ứng là 'No, you shouldn't'." },
+                    { id: "ex3_10", q: "Do the farmers move to a new place when the soil becomes poor? – Yes, they [option].", options: ["do", "does", "did", "move"], answer: "do", type: "mcq_simple", exp: "Câu hỏi hiện tại đơn mượn trợ động từ số nhiều 'Do the farmers...?' -> Câu trả lời ngắn khẳng định tương ứng là 'Yes, they do'." }
+                ]
+            },
+            "ex4": {
+                title: "Exercise 4: Put the words in brackets into the plural form",
+                desc: "Thực hành biến đổi danh từ trong ngoặc đơn sang dạng số nhiều chuẩn chỉnh quy tắc biến đổi phụ âm cuối.",
+                questions: [
+                    { id: "ex4_1", q: "Minority groups have their own musical [option] (instrument) like dan tinh and gong.", options: ["instruments", "instrumentes", "instrument", "instrumentses"], answer: "instruments", type: "mcq_simple", exp: "'instrument' (nhạc cụ) là danh từ đếm được, khi chỉ chung chung số nhiều ta chỉ cần thêm s thông thường -> 'instruments'." },
+                    { id: "ex4_2", q: "The Kinh use sticky [option] (rice) to make Banh Chung.", options: ["rice", "rices", "ricees", "ricen"], answer: "rice", type: "mcq_simple", exp: "'rice' (gạo nếp) thuộc nhóm danh từ không đếm được chất liệu, không có dạng số nhiều thêm s, giữ nguyên là 'rice'." },
+                    { id: "ex4_3", q: "My grandmother used to teach me many folk [option] (song).", options: ["songs", "songes", "song", "songses"], answer: "songs", type: "mcq_simple", exp: "Đứng sau lượng từ nhiều 'many' bổ nghĩa cho danh từ đếm được, danh từ 'song' bắt buộc thêm s số nhiều -> 'songs'." },
+                    { id: "ex4_4", q: "The staircase of a Muong’s stilt house has an odd number of [option] (step) such as 5, 7 or 9.", options: ["steps", "stepes", "step", "stepse"], answer: "steps", type: "mcq_simple", exp: "Hỏi về số lượng bậc thang lẻ số nhiều đếm được -> danh từ 'step' thêm s thông thường tạo thành 'steps'." },
+                    { id: "ex4_5", q: "A big stilt house stands on high [option] (post).", options: ["posts", "postes", "post", "postse"], answer: "posts", type: "mcq_simple", exp: "Ngôi nhà đứng trên nhiều cột gỗ chống đỡ nâng đỡ -> danh từ 'post' đổi sang dạng số nhiều thêm s là 'posts'." },
+                    { id: "ex4_6", q: "The Lahu build their houses from wood (wood) and wild banana [option] (leaf).", options: ["leaves", "leafs", "leafes", "leafses"], answer: "leaves", type: "mcq_simple", exp: "Danh từ kết thúc bằng 'f' như 'leaf' khi chuyển sang số nhiều phải đổi 'f' thành 'v' rồi mới thêm 'es' -> 'leaves' (những chiếc lá chuối rừng)." },
+                    { id: "ex4_7", q: "Most minority [option] (woman) weave clothes and do housework.", options: ["women", "womans", "womanes", "womenes"], answer: "women", type: "mcq_simple", exp: "Danh từ chỉ người phụ nữ 'woman' có dạng số nhiều biến đổi nguyên âm bất quy tắc đặc biệt -> 'women' (những người phụ nữ)." },
+                    { id: "ex4_8", q: "In the mountains, there is not much land (land) for growing [option] (crop).", options: ["crops", "cropes", "crop", "croppes"], answer: "crops", type: "mcq_simple", exp: "Để gieo trồng các loại hoa màu lương thực nông sản khác nhau số nhiều -> danh từ đếm được 'crop' thêm s thành 'crops'." },
+                    { id: "ex4_9", q: "The number of minority [option] (child) going to school is going up.", options: ["children", "childs", "childrens", "childes"], answer: "children", type: "mcq_simple", exp: "Danh từ đếm được chỉ đứa trẻ 'child' biến đổi số nhiều bất quy tắc hoàn toàn -> 'children' (các em nhỏ trẻ em)." },
+                    { id: "ex4_10", q: "People in the mountains live close to [option] (nature).", options: ["nature", "natures", "naturees", "naturen"], answer: "nature", type: "mcq_simple", exp: "'nature' (thiên nhiên tạo hóa trừu tượng) là danh từ không đếm được đặc thù, giữ nguyên trạng thái không thêm s -> 'nature'." }
+                ]
+            },
+            "ex5": {
+                title: "Exercise 5: Synonyms (CLOSEST in meaning)",
+                desc: "Tìm từ đồng nghĩa tương đương sát nghĩa nhất với phần được in đậm gạch chân.",
+                questions: [
+                    {
+                        id: "ex5_1",
+                        q: "Gathering and hunting still play an <strong>important</strong> role in the economy of the Laha.",
+                        options: ["significant", "major", "simple", "developed"],
+                        answer: "significant",
+                        type: "mcq",
+                        exp: "• <span class='exp-word'>important</span> <span class='exp-ipa'>[ /ɪmˈpɔːtnt/ ]</span>: đóng vai trò vô cùng quan trọng, thiết yếu.<br>• <span class='exp-word'>significant</span> <span class='exp-ipa'>[ sɪɡˈnɪfɪkənt/ ]</span>: có ý nghĩa to lớn, quan trọng.<br>Do đó hai từ này đồng nghĩa sát sườn với nhau nhất trong ngữ cảnh này."
+                    },
+                    {
+                        id: "ex5_2",
+                        q: "Some ethnic peoples in the mountainous regions still keep their <strong>traditional</strong> way of farming.",
+                        options: ["social", "modern", "conventional", "successful"],
+                        answer: "conventional",
+                        type: "mcq",
+                        exp: "• <span class='exp-word'>traditional</span> <span class='exp-ipa'>[ /təˈdɪʃənl/ ]</span>: thuộc về truyền thống cổ truyền.<br>• <span class='exp-word'>conventional</span> <span class='exp-ipa'>[ /kənˈvenʃənl/ ]</span>: theo tập quán quen thuộc, truyền thống lâu đời.<br>Do đó hai từ này hoạt động như cặp từ đồng nghĩa hoàn hảo."
+                    },
+                    {
+                        id: "ex5_3",
+                        q: "Sa Pa is <strong>famous</strong> for the terraced fields located in the mountainous area.",
+                        options: ["peaceful", "well-known", "musical", "traditional"],
+                        answer: "well-known",
+                        type: "mcq",
+                        exp: "• <span class='exp-word'>famous</span> <span class='exp-ipa'>[ /ˈfeɪməs/ ]</span>: nổi tiếng trứ danh khắp nơi.<br>• <span class='exp-word'>well-known</span> <span class='exp-ipa'>[ /ˌwel ˈnəʊn/ ]</span>: được nhiều người biết tới rộng rãi, nổi danh.<br>Cặp từ đồng nghĩa huyền thoại trong các đề thi tiếng Anh học đường."
+                    },
+                    {
+                        id: "ex5_4",
+                        q: "The Rong House is where community activities <strong>take place</strong>, such as meetings, wedding ceremonies, or prayer ceremonies.",
+                        options: ["enrich", "travel", "happen", "weave"],
+                        answer: "happen",
+                        type: "mcq",
+                        exp: "• <span class='exp-word'>take place</span>: diễn ra, tổ chức một sự kiện kế hoạch.<br>• <span class='exp-word'>happen</span> <span class='exp-ipa'>[ /ˈhæpən/ ]</span>: diễn ra, xảy ra sự việc.<br>Nên cụm từ 'take place' đồng nghĩa trực diện với động từ 'happen'."
+                    },
+                    {
+                        id: "ex5_5",
+                        q: "Many ethnic minority children in <strong>remote</strong> or mountainous areas are studying at boarding schools.",
+                        options: ["divided", "modern", "abutting", "solitary"],
+                        answer: "solitary",
+                        type: "mcq",
+                        exp: "• <span class='exp-word'>remote</span> <span class='exp-ipa'>[ /rɪˈməʊt/ ]</span>: hẻo lánh, xa xôi, biệt lập cô đơn.<br>• <span class='exp-word'>solitary</span> <span class='exp-ipa'>[ /ˈsɒlətri/ ]</span>: biệt lập, đơn độc hoang vắng cô quạnh.<br>Trong 4 đáp án cho sẵn, 'solitary' là tính từ tiệm cận nghĩa cô đơn biệt lập hẻo lánh nhất của vùng núi cao."
+                    }
+                ]
+            },
+            "ex6": {
+                title: "Exercise 6: Antonyms (OPPOSITE in meaning)",
+                desc: "Tìm từ trái nghĩa hoàn toàn trái ngược mặt ngữ nghĩa với phần được in đậm gạch chân.",
+                questions: [
+                    {
+                        id: "ex6_1",
+                        q: "The Kinh have the largest number of people, about 86% of the population. 14 percent of others are called ethnic <strong>minority</strong> people.",
+                        options: ["smallest", "much", "majority", "little"],
+                        answer: "majority",
+                        type: "mcq",
+                        exp: "• <span class='exp-word'>minority</span> <span class='exp-ipa'>[ /maɪˈnɒrəti/ ]</span>: nhóm dân tộc thiểu số, số ít.<br>• <span class='exp-word'>majority</span> <span class='exp-ipa'>[ /məˈdʒɒrəti/ ]</span>: nhóm đa số, chiếm số đông dân số.<br>Đây là cặp từ trái nghĩa tuyệt đối trong phân loại cơ cấu xã hội."
+                    },
+                    {
+                        id: "ex6_2",
+                        q: "Ethnic peoples in the mountains have a <strong>simple</strong> way of farming.",
+                        options: ["minor", "complicated", "poor", "modern"],
+                        answer: "complicated",
+                        type: "mcq",
+                        exp: "• <span class='exp-word'>simple</span> <span class='exp-ipa'>[ /ˈsɪmpl/ ]</span>: đơn giản, mộc mạc.<br>• <span class='exp-word'>complicated</span> <span class='exp-ipa'>[ /ˈkɒmplɪkeɪtɪd/ ]</span>: vô cùng phức tạp, rắc rối đa đoan.<br>Cặp từ trái nghĩa mô tả mức độ tinh vi phức tạp của kỹ thuật gieo trồng."
+                    },
+                    {
+                        id: "ex6_3",
+                        q: "It is <strong>important</strong> to keep good traditions.",
+                        options: ["complicated", "significant", "insignificant", "elaborate"],
+                        answer: "insignificant",
+                        type: "mcq",
+                        exp: "• <span class='exp-word'>important</span> <span class='exp-ipa'>[ /ɪmˈpɔːtnt/ ]</span>: có tầm ảnh hưởng quan trọng to lớn.<br>• <span class='exp-word'>insignificant</span> <span class='exp-ipa'>[ /ˌɪnsɪɡˈnɪfɪkənt/ ]</span>: tầm thường, nhỏ nhặt không đáng kể trọng yếu.<br>Trái nghĩa trực diện nhờ tiền tố phủ định 'in-' tạo từ trái nghĩa."
+                    },
+                    {
+                        id: "ex6_4",
+                        q: "Saint Giong is <strong>different</strong> from other heroes in Viet Nam.",
+                        options: ["strong", "same", "great", "giant"],
+                        answer: "same",
+                        type: "mcq",
+                        exp: "• <span class='exp-word'>different</span> <span class='exp-ipa'>[ /ˈdɪfrənt/ ]</span>: khác biệt, độc đáo riêng tư.<br>• <span class='exp-word'>same</span> <span class='exp-ipa'>[ /seɪm/ ]</span>: giống hệt nhau, tương đồng một khuôn mẫu.<br>Hai từ trái ngược nghĩa nhau hoàn toàn."
+                    },
+                    {
+                        id: "ex6_5",
+                        q: "Thai cloth is well-known for being <strong>unique</strong>, colourful and strong.",
+                        options: ["rare", "special", "typical", "common"],
+                        answer: "common",
+                        type: "mcq",
+                        exp: "• <span class='exp-word'>unique</span> <span class='exp-ipa'>[ /juˈniːk/ ]</span>: độc nhất vô nhị, độc đáo hiếm thấy trên đời.<br>• <span class='exp-word'>common</span> <span class='exp-ipa'>[ /ˈkɒmən/ ]</span>: phổ thông bình thường, bạt ngàn phổ biến đâu đâu cũng thấy.<br>Do đó chúng trái nghĩa sâu sắc về độ quý hiếm độc lạ văn hóa dệt thổ cẩm."
+                    }
+                ]
+            },
+            "ex7": {
+                title: "Exercise 7: Word Form (Appropriate form of word)",
+                desc: "Lựa chọn dạng đúng của từ loại danh-động-tính-trạng phù hợp nhất với cấu trúc cú pháp của câu.",
+                questions: [
+                    {
+                        id: "ex7_1",
+                        q: "Viet Nam is one of the most [option] diverse countries in South East Asia. (ethnic)",
+                        options: ["ethnically", "ethnic", "ethnicity", "ethnicities"],
+                        answer: "ethnically",
+                        type: "mcq_simple",
+                        exp: "• Đứng trước bổ nghĩa cho tính từ chỉ tính chất 'diverse' (đa dạng) ta bắt buộc cần sử dụng một trạng từ (Adverb) có đuôi -ly -> <span class='exp-word'>ethnically</span> <span class='exp-ipa'>[ /ˈeθnɪkli/ ]</span> (về mặt sắc tộc)."
+                    },
+                    {
+                        id: "ex7_2",
+                        q: "The Pa Then believe that the god of fire brings them [option] and prosperity. (peaceful)",
+                        options: ["peace", "peacefully", "peacefulness", "peaces"],
+                        answer: "peace",
+                        type: "mcq_simple",
+                        exp: "• Đứng trước liên từ song hành 'and' cùng cấp với danh từ chỉ sự thịnh vượng 'prosperity' (Noun) ta cần điền một danh từ tương ứng -> <span class='exp-word'>peace</span> <span class='exp-ipa'>[ /piːs/ ]</span> (sự hòa bình, yên ấm thái bình)."
+                    },
+                    {
+                        id: "ex7_3",
+                        q: "Festivals characterize customs and [option] of a community. (believe)",
+                        options: ["beliefs", "believers", "belief", "believes"],
+                        answer: "beliefs",
+                        type: "mcq_simple",
+                        exp: "• Đứng sau danh từ số nhiều liệt kê 'customs' (những phong tục) và liên từ song hành 'and', ta cần điền một danh từ số nhiều tương xứng chỉ tín ngưỡng -> <span class='exp-word'>beliefs</span> <span class='exp-ipa'>[ /bɪˈliːfs/ ]</span> (những đức tin, tín ngưỡng tôn giáo)."
+                    },
+                    {
+                        id: "ex7_4",
+                        q: "The Tay practice rice [option] in submerged fields. (cultivate)",
+                        options: ["cultivation", "cultivated", "cultivating", "cultivator"],
+                        answer: "cultivation",
+                        type: "mcq_simple",
+                        exp: "• Cụm danh từ ghép chỉ hoạt động canh tác lúa nước nông nghiệp cổ: 'rice cultivation' -> dùng danh từ <span class='exp-word'>cultivation</span> <span class='exp-ipa'>[ /ˌkʌltɪˈveɪʃn/ ]</span> (hoạt động gieo trồng thâm canh vụ mùa)."
+                    },
+                    {
+                        id: "ex7_5",
+                        q: "The Tay community practice [option] religious beliefs including ancestor worship. (tradition)",
+                        options: ["traditional", "traditionally", "traditions", "traditionalize"],
+                        answer: "traditional",
+                        type: "mcq_simple",
+                        exp: "• Đứng trước bổ nghĩa trực tiếp cho cụm danh từ 'religious beliefs' (những tín ngưỡng tôn giáo) ta cần sử dụng một tính từ (Adjective) -> <span class='exp-word'>traditional</span> <span class='exp-ipa'>[ /təˈdɪʃənl/ ]</span> (mang tính cổ truyền, truyền thống)."
+                    },
+                    {
+                        id: "ex7_6",
+                        q: "The population of Viet Nam contains a rich [option] of ethnic groups. (diverse)",
+                        options: ["diversity", "diversification", "diverse", "diversely"],
+                        answer: "diversity",
+                        type: "mcq_simple",
+                        exp: "• Đứng sau mạo từ số ít và tính từ bổ trợ 'a rich', ta cần điền một danh từ chỉ sự phong phú đa dạng chủng tộc -> <span class='exp-word'>diversity</span> <span class='exp-ipa'>[ /daɪˈvɜːsəti/ ]</span> (sự đa dạng văn hóa địa lý sắc tộc)."
+                    },
+                    {
+                        id: "ex7_7",
+                        q: "Ethnic [option] make up about 15 percent of Vietnam's population. (minor)",
+                        options: ["minorities", "minority", "minors", "minorityes"],
+                        answer: "minorities",
+                        type: "mcq_simple",
+                        exp: "• Đứng vai trò chủ ngữ đứng trước động từ số nhiều 'make up', ta cần sử dụng danh từ số nhiều chỉ các dân tộc thiểu số sắc tộc -> <span class='exp-word'>minorities</span> <span class='exp-ipa'>[ /maɪˈnɒrətiz/ ]</span>."
+                    },
+                    {
+                        id: "ex7_8",
+                        q: "A number of celebrities will be flying in to take part in the [option]. (festival)",
+                        options: ["festivities", "festivals", "festively", "festivalize"],
+                        answer: "festivities",
+                        type: "mcq_simple",
+                        exp: "• Tham gia vào không khí ngày hội chung tưng bừng náo nhiệt -> sử dụng danh từ số nhiều <span class='exp-word'>festivities</span> <span class='exp-ipa'>[ /feˈstɪvətiz/ ]</span> (các hoạt động hội hè, không khí vui tươi ăn mừng lễ hội)."
+                    },
+                    {
+                        id: "ex7_9",
+                        q: "Each time I returned I was struck by the [option] of Sa Pa and its people. (unique)",
+                        options: ["uniqueness", "unique", "uniquely", "uniques"],
+                        answer: "uniqueness",
+                        type: "mcq_simple",
+                        exp: "• Đứng sau mạo từ xác định 'the' bổ nghĩa sở hữu bởi giới từ 'of', ta cần điền một danh từ trừu tượng chỉ nét độc đáo đặc sắc riêng có -> <span class='exp-word'>uniqueness</span> <span class='exp-ipa'>[ /juˈniːknəs/ ]</span> (vẻ độc đáo đặc sắc có một không hai)."
+                    },
+                    {
+                        id: "ex7_10",
+                        q: "The government carried out a programme to [option] the health service in remote and rural areas. (modern)",
+                        options: ["modernize", "modernization", "modernly", "modernist"],
+                        answer: "modernize",
+                        type: "mcq_simple",
+                        exp: "• Cấu trúc chỉ mục đích hành động của chính phủ: 'to + Verb-nguyên mẫu' -> sử dụng động từ <span class='exp-word'>modernize</span> <span class='exp-ipa'>[ /ˈmɒdənaɪz/ ]</span> (hiện đại hóa trang thiết bị y tế bản làng vùng sâu)."
+                    }
+                ]
+            }
+        };
+
+        let score = 0;
+        let answeredList = {}; // Records structured as { questionId: { chosen: string, correct: boolean } }
+        let currentActiveTab = "ex1_p1";
+
+        // BEAUTIFUL INLINE SVG GRAPHICS GENERATOR FOR EXERCISE 6 (PICTURES)
+        function makeSVGGraphic(index) {
+            switch(index) {
+                case 1: // Table Tennis / Chess
+                    return `<svg viewBox="0 0 100 100" class="w-24 h-24 mx-auto"><rect x="10" y="10" width="80" height="80" fill="#E8F5E9" rx="12"/><circle cx="50" cy="50" r="30" fill="#FFF176" stroke="#F57F17" stroke-width="4"/><path d="M35 35 L65 65 M35 65 L65 35" stroke="#F57F17" stroke-width="3"/></svg>`;
+                case 2: // English Club
+                    return `<svg viewBox="0 0 100 100" class="w-24 h-24 mx-auto"><rect x="10" y="10" width="80" height="80" fill="#E3F2FD" rx="12"/><text x="25" y="60" font-family="'Nunito'" font-size="28" font-weight="900" fill="#1565C0">A B C</text><circle cx="70" cy="30" r="10" fill="#FF4757"/></svg>`;
+                case 3: // Volleyball
+                    return `<svg viewBox="0 0 100 100" class="w-24 h-24 mx-auto"><circle cx="50" cy="50" r="35" fill="#FFF176" stroke="#F57F17" stroke-width="4"/><path d="M25 35 Q50 60 75 35 M20 50 Q50 20 80 50" fill="none" stroke="#F57F17" stroke-width="3"/></svg>`;
+                case 4: // Cards / Crafts
+                    return `<svg viewBox="0 0 100 100" class="w-24 h-24 mx-auto"><rect x="15" y="25" width="70" height="50" fill="#FFFDE7" stroke="#FBC02D" stroke-width="3" rx="8"/><path d="M50 40 Q40 30 35 40 T50 60 Q60 50 65 40 T50 40" fill="#FF4757"/></svg>`;
+                case 5: // Studying Hard
+                    return `<svg viewBox="0 0 100 100" class="w-24 h-24 mx-auto"><rect x="25" y="20" width="50" height="60" fill="#FFFFFF" stroke="#37474F" stroke-width="4" rx="4"/><line x1="35" y1="35" x2="65" y2="35" stroke="#78909C" stroke-width="3"/><circle cx="75" cy="70" r="10" fill="#FFEB3B" opacity="0.8"/></svg>`;
+                case 6: // Singing / Music
+                    return `<svg viewBox="0 0 100 100" class="w-24 h-24 mx-auto"><path d="M30 70 A10 10 0 1 1 20 60 A10 10 0 1 1 30 70 Z" fill="#8854C0"/><path d="M30 70 V30 H60 V70" stroke="#8854C0" stroke-width="5" fill="none"/><circle cx="60" cy="70" r="10" fill="#8854C0"/></svg>`;
+                case 7: // Freezy Day / Hot Chocolate
+                    return `<svg viewBox="0 0 100 100" class="w-24 h-24 mx-auto"><path d="M30 40 H70 V75 C70 82 60 85 50 85 C40 85 30 82 30 75 Z" fill="#D84315"/><path d="M70 45 H80 C85 45 85 60 80 60 H70" fill="none" stroke="#D84315" stroke-width="6"/><path d="M40 25 Q45 15 42 10" fill="none" stroke="#FF8F00" stroke-width="3"/></svg>`;
+                case 8: // Toothache / Dentist
+                    return `<svg viewBox="0 0 100 100" class="w-24 h-24 mx-auto"><path d="M35 30 C35 15 65 15 65 30 C65 45 60 55 58 75 C55 85 45 85 42 75 C40 55 35 45 35 30 Z" fill="#FFFFFF" stroke="#00B4A2" stroke-width="4"/></svg>`;
+                default:
+                    return '';
+            }
+        }
+
+        function setupNavigationTabs() {
+            const container = document.getElementById("tabs-container");
+            container.innerHTML = "";
+            let counter = 1;
+
+            for (const key in database) {
+                const item = database[key];
+                const cleanName = item.title.split(":")[0];
+                const tab = document.createElement("button");
+                tab.id = `tab-anchor-${key}`;
+                tab.className = `py-2.5 px-3 rounded-2xl text-xs md:text-sm font-black tab-btn border-b-4 border-black/10 active:translate-y-0.5 shadow-sm transition-all flex items-center justify-center gap-1`;
+                tab.innerHTML = `<i class="fa-solid fa-star text-yellow-300"></i> P.${counter}: ${cleanName}`;
+                tab.onclick = () => switchTab(key);
+                container.appendChild(tab);
+                counter++;
+            }
+            switchTab(currentActiveTab);
+        }
+
+        function switchTab(key) {
+            currentActiveTab = key;
+            document.querySelectorAll("#tabs-container button").forEach(b => b.classList.remove("active"));
+            const targetTab = document.getElementById(`tab-anchor-${key}`);
+            if (targetTab) targetTab.classList.add("active");
+
+            renderWorkspace(key);
+            playSound('correct');
+        }
+
+        function renderWorkspace(key) {
+            const workspace = document.getElementById("exercise-workspace");
+            const data = database[key];
+
+            let html = `
+                <div class="mb-6 border-b-2 border-dashed border-white/20 pb-4">
+                    <h2 class="text-xl md:text-2xl font-black text-white flex items-center gap-2">
+                        <span class="bg-emerald-600 text-white py-1 px-3 rounded-xl text-xs uppercase tracking-wide font-extrabold shadow-sm">Đang học</span>
+                        ${data.title}
+                    </h2>
+                    <p class="text-xs md:text-sm font-bold text-teal-950 mt-1"><i class="fa-solid fa-info-circle"></i> ${data.desc}</p>
+                </div>
+                <div class="space-y-6">
+            `;
+
+            data.questions.forEach((q, idx) => {
+                const answerStatus = answeredList[q.id];
+                let wrapClass = "bg-white/95 rounded-3xl p-5 md:p-6 shadow-md border-b-4 border-black/10 transition-all duration-300 relative";
+                
+                if (answerStatus) {
+                    wrapClass = answerStatus.correct 
+                        ? "bg-green-50 border-4 border-[#00D26A] rounded-3xl p-5 md:p-6 shadow-md relative"
+                        : "bg-red-50 border-4 border-[#FF4757] rounded-3xl p-5 md:p-6 shadow-md relative shake";
+                }
+
+                html += `
+                    <div class="${wrapClass}" id="question-card-${q.id}">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="bg-teal-700 text-white font-extrabold px-3 py-1 rounded-xl text-xs uppercase shadow-sm">CÂU ${idx + 1}</span>
+                            ${answerStatus ? (answerStatus.correct ? '<span class="text-[#00D26A] font-black text-sm"><i class="fa-solid fa-face-laugh-beam"></i> CHÍNH XÁC!</span>' : '<span class="text-[#FF4757] font-black text-sm"><i class="fa-solid fa-face-sad-tear"></i> CHƯA ĐÚNG!</span>') : ''}
+                        </div>
+                `;
+
+                // Render based on question type
+                if (q.type === "mcq") {
+                    html += `<p class="text-base md:text-lg font-black text-slate-800 leading-relaxed mb-4">${q.q}</p>`;
+                    html += `<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">`;
+                    
+                    q.options.forEach(opt => {
+                        let btnStyle = "btn-answer font-extrabold p-3.5 rounded-2xl text-left border-b-4 flex items-center gap-2 text-sm md:text-base";
+                        let btnIcon = `<i class="fa-regular fa-circle text-teal-300"></i>`;
+                        let isBtnDisabled = answerStatus ? 'disabled' : '';
+
+                        if (answerStatus) {
+                            if (opt === q.answer) {
+                                btnStyle = "bg-[#00D26A] text-white font-extrabold p-3.5 rounded-2xl text-left border-b-4 border-[#009624] flex items-center gap-2 text-sm md:text-base";
+                                btnIcon = `<i class="fa-solid fa-circle-check text-white animate-bounce"></i>`;
+                            } else if (answerStatus.chosen === opt) {
+                                btnStyle = "bg-[#FF4757] text-white font-extrabold p-3.5 rounded-2xl text-left border-b-4 border-[#C2185B] flex items-center gap-2 text-sm md:text-base";
+                                btnIcon = `<i class="fa-solid fa-circle-xmark text-white"></i>`;
+                            } else {
+                                btnStyle = "bg-gray-100 border-2 border-gray-200 text-gray-400 font-bold p-3.5 rounded-2xl text-left flex items-center gap-2 opacity-60 text-sm md:text-base";
+                            }
+                        }
+
+                        html += `
+                            <button ${isBtnDisabled} onclick="checkMCQAnswer('${q.id}', '${opt}', '${q.answer}')" class="${btnStyle}">
+                                ${btnIcon} <span>${opt}</span>
+                            </button>
+                        `;
+                    });
+                    html += `</div>`;
+
+                } else if (q.type === "mcq_simple") {
+                    // Split the template to find [option] and replace it with interactive choices
+                    let renderedSentence = q.q;
+                    const matchPattern = /\[option\]/;
+                    
+                    const activeLabel = answerStatus ? answerStatus.chosen : "Bấm chọn từ đúng...";
+                    const labelStyle = answerStatus 
+                        ? (answerStatus.correct ? "bg-[#00D26A] text-white border-[#009624]" : "bg-[#FF4757] text-white border-[#C2185B]")
+                        : "bg-amber-100 text-amber-900 border-amber-300 animate-pulse";
+                    
+                    const elementButton = `
+                        <button ${answerStatus ? 'disabled' : ''} onclick="openChoiceSelector('${q.id}', '${q.answer}')" class="${labelStyle} border-2 border-dashed rounded-xl px-4 py-1.5 font-black mx-1.5 transition-all transform hover:scale-[1.03] shadow-sm text-sm">
+                            ${activeLabel} <i class="fa-solid fa-caret-down text-xs ml-1"></i>
+                        </button>
+                    `;
+                    renderedSentence = q.q.replace(matchPattern, elementButton);
+
+                    html += `
+                        <p class="text-base md:text-lg font-black text-slate-800 leading-loose mb-2">
+                            ${renderedSentence}
+                        </p>
+                    `;
+                }
+
+                // If visual matching / signages are enabled
+                if (key === "ex6") {
+                    // Splice some custom SVGs inline matching school clubs
+                    html += `
+                        <div class="mt-4 bg-teal-50 p-4 rounded-2xl border-2 border-dashed border-teal-100 flex items-center justify-center">
+                            ${makeSVGGraphic(idx + 1)}
+                        </div>
+                    `;
+                }
+
+                // Render master explanation block upon clicking immediately
+                if (answerStatus) {
+                    html += `
+                        <div class="explanation-box mt-5">
+                            <div class="banner-instruction m-4 p-3 font-black text-xs md:text-sm text-center">
+                                Thạc sỹ Ms Lê Hằng English giải thích siêu chi tiết:
+                            </div>
+                            <div class="exp-content px-5 pb-5">
+                                <p class="text-slate-700 font-bold leading-relaxed text-sm md:text-base">
+                                    ${q.exp}
+                                </p>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                html += `</div>`;
+            });
+
+            html += `</div>`;
+            workspace.innerHTML = html;
+        }
+
+        function checkMCQAnswer(qId, selectedOption, correctAnswer) {
+            if (answeredList[qId]) return;
+
+            const isCorrect = selectedOption === correctAnswer;
+            answeredList[qId] = {
+                correct: isCorrect,
+                chosen: selectedOption
+            };
+
+            if (isCorrect) {
+                score += 10;
+                playSound('correct');
+                spawnConfetti();
+            } else {
+                playSound('wrong');
+                const card = document.getElementById(`question-card-${qId}`);
+                if (card) {
+                    card.classList.add("shake");
+                    setTimeout(() => card.classList.remove("shake"), 400);
+                }
+            }
+
+            updateScorePanel();
+            renderWorkspace(currentActiveTab);
+        }
+
+        let activeDropdownQId = null;
+        let activeDropdownCorrectAns = null;
+
+        function openChoiceSelector(qId, correctAns) {
+            activeDropdownQId = qId;
+            activeDropdownCorrectAns = correctAns;
+
+            const anchor = document.getElementById("popup-choices-anchor");
+            anchor.innerHTML = "";
+
+            // Find current active object details
+            let targetObject = null;
+            for (const k in database) {
+                const found = database[k].questions.find(item => item.id === qId);
+                if (found) {
+                    targetObject = found;
+                    break;
+                }
+            }
+
+            if (!targetObject) return;
+
+            const poolOptions = targetObject.options;
+            poolOptions.forEach(opt => {
+                const btn = document.createElement("button");
+                btn.className = "w-full bg-teal-50 text-teal-950 border-2 border-teal-200 hover:bg-teal-100 font-black py-3 px-4 rounded-xl text-left border-b-4 active:translate-y-0.5 transition-all text-sm";
+                btn.innerText = opt;
+                btn.onclick = () => selectPopupChoice(opt);
+                anchor.appendChild(btn);
+            });
+
+            document.getElementById("dropdown-overlay").classList.remove("hidden");
+            setTimeout(() => {
+                document.getElementById("popup-box").classList.remove("scale-95");
+            }, 10);
+        }
+
+        function selectPopupChoice(chosenOpt) {
+            const isCorrect = chosenOpt === activeDropdownCorrectAns;
+            answeredList[activeDropdownQId] = {
+                correct: isCorrect,
+                chosen: chosenOpt
+            };
+
+            if (isCorrect) {
+                score += 10;
+                playSound('correct');
+                spawnConfetti();
+            } else {
+                playSound('wrong');
+            }
+
+            closeDropdown();
+            updateScorePanel();
+            renderWorkspace(currentActiveTab);
+        }
+
+        function closeDropdown() {
+            document.getElementById("popup-box").classList.add("scale-95");
+            setTimeout(() => {
+                document.getElementById("dropdown-overlay").classList.add("hidden");
+            }, 150);
+        }
+
+        function updateScorePanel() {
+            let totalQCount = 0;
+            for (const k in database) {
+                totalQCount += database[k].questions.length;
+            }
+            const doneCount = Object.keys(answeredList).length;
+            const currentPercentage = totalQCount > 0 ? (doneCount / totalQCount) * 100 : 0;
+            
+            document.getElementById("footer-progress-bar").style.width = `${currentPercentage}%`;
+            document.getElementById("footer-score-text").innerText = score;
+        }
+
+        function submitFinal() {
+            let totalQCount = 0;
+            for (const k in database) {
+                totalQCount += database[k].questions.length;
+            }
+            const doneCount = Object.keys(answeredList).length;
+
+            if (doneCount === 0) {
+                playSound('wrong');
+                showCommentModal("Con ơi, hãy thử sức giải quyết các bài tập bên dưới trước khi bấm nút tổng kết kết quả nhé! Cô chúc con làm thật tốt!", 0, 0, totalQCount);
+                return;
+            }
+
+            let correctCount = 0;
+            for (const key in answeredList) {
+                if (answeredList[key].correct) {
+                    correctCount++;
+                }
+            }
+
+            const percentVal = Math.round((correctCount / totalQCount) * 100);
+            let evaluation = "";
+
+            if (percentVal < 50) {
+                evaluation = "Con học ráng lên xíu nữa nha! Ms Lê Hằng an ủi: 'Điểm lần này chưa cao lắm, con cố gắng đọc kĩ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau!'.";
+                playSound('wrong');
+            } else if (percentVal >= 60 && percentVal <= 80) {
+                evaluation = "Khá lắm con ơi! Ms Lê Hằng đánh giá: 'Con đã có tiến bộ khá ổn rồi, con cố gắng đọc kĩ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau!'.";
+                playSound('correct');
+                spawnConfetti();
+            } else {
+                evaluation = "Quá xuất sắc luôn! Ms Lê Hằng tuyên dương: 'Làm tốt lắm, con cố gắng rinh điểm 10 ở lần sau nha!'. Con hãy ghi lại toàn bộ cấu trúc ngữ pháp mới vào vở để giữ vững phong độ nhé!";
+                playSound('correct');
+                spawnConfetti();
+                setTimeout(spawnConfetti, 1000);
+            }
+
+            showCommentModal(evaluation, percentVal, correctCount, totalQCount);
+        }
+
+        function showCommentModal(commentText, percentage, correct, total) {
+            document.getElementById("modal-score-percent").innerText = `${percentage}%`;
+            document.getElementById("modal-score-fraction").innerText = `(${correct}/${total} câu trả lời hoàn toàn chính xác)`;
+            document.getElementById("modal-comment").innerText = commentText;
+            document.getElementById("result-modal").classList.remove("hidden");
+        }
+
+        function closeResultModal() {
+            document.getElementById("result-modal").classList.add("hidden");
+        }
+
+        function restartTest() {
+            answeredList = {};
+            score = 0;
+            currentActiveTab = "ex1_p1";
+            updateScorePanel();
+            setupNavigationTabs();
+            closeResultModal();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.onload = function() {
+            setupNavigationTabs();
+            updateScorePanel();
+        }
+    </script>
+</body>
+</html>
